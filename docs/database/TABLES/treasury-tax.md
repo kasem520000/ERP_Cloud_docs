@@ -230,3 +230,11 @@ user_id code name commission_rate — no commission calc (PHASE-017); attributio
 ## `receipts` extension + `ar_allocations` (PHASE-012)
 
 receipts via treasury (cash/bank/cheque) G-05/G-06 FX; ar_allocations receipt↔invoice INV-016 BR-027 on-account + FIFO suggestion + audited reallocation; aging deterministic as-of BR-028 RC-10.
+
+## `report_runs` (PHASE-013)
+
+tenant_id, report_key, contract_version, params jsonb params_hash unique, status QUEUED→RUNNING→SUCCEEDED/FAILED/ASSERTION_FAILED stage requested_by duration assertion_results artifact_refs RLS; cache key (tenant,report_id,version,params_hash,asOf) invalidation on posting.
+
+## `print_templates` (PHASE-013)
+
+key a4-report/a4-document/receipt-80/receipt-58 locale ar/en version content_html css @page thead repetition woff2 tabular-nums; seeded 8 rows (4×2 locales) v1 RTL/LTR.

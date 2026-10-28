@@ -1,0 +1,3 @@
+import { register } from '../index.js';
+register({ id:'ar.aging', version:1, title:{ ar:'أعمار الذمم المدينة', en:'AR Aging' }, category:'ar-ap', requiredPermission:'reports.ar.aging.read', dataSources:[{ module:'sales', service:'arQueries.aging()', tables:['sales_invoices'], purpose:{ ar:'أعمار', en:'aging' } }] });
+register({ id:'ap.aging', version:1, title:{ ar:'أعمار الذمم الدائنة', en:'AP Aging' }, category:'ar-ap', requiredPermission:'reports.ap.aging.read', dataSources:[{ module:'purchasing', service:'apQueries.aging()', tables:['supplier_invoices'], purpose:{ ar:'أعمار موردين', en:'AP aging' } }] });

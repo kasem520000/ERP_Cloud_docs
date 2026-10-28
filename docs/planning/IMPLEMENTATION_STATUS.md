@@ -28,7 +28,7 @@ The repository now contains the blueprint + PHASE-001..006 COMPLETE (design syst
 | PHASE-010 | Inventory & Warehousing | COMPLETE | [reports/PHASE-010-COMPLETION.md](../implementation/phases/reports/PHASE-010-COMPLETION.md) | `0011_inventory_core.sql` 11 tables+stock_moves immutable+WAC/FIFO 6dp+transfers/counts/tracking/reservations+INV-010 — tag `phase/010` |
 | PHASE-011 | Purchasing & Payables | COMPLETE | [reports/PHASE-011-COMPLETION.md](../implementation/phases/reports/PHASE-011-COMPLETION.md) | `0012_purchasing_core.sql` 11 tables+GRN/G-08/AP+INV-009/012/016 — tag `phase/011` |
 | PHASE-012 | Sales & Receivables | COMPLETE | [reports/PHASE-012-COMPLETION.md](../implementation/phases/reports/PHASE-012-COMPLETION.md) | `0013_sales_core.sql` quotations→receipts G-01..G-06 INV-009/013/016/021 — tag `phase/012` |
-| PHASE-013 | Reporting, Statements & Printing | NOT_STARTED | — | |
+| PHASE-013 | Reporting, Statements & Printing | COMPLETE | [reports/PHASE-013-COMPLETION.md](../implementation/phases/reports/PHASE-013-COMPLETION.md) | `0014_reporting_core.sql` report_runs/print_templates 4 templates registry/assertions/exports — tag `phase/013` |
 | PHASE-014 | Subscriptions, Billing & Onboarding | NOT_STARTED | — | MVP gate |
 | PHASE-015 | Industry Framework & Templates | NOT_STARTED | — | |
 | PHASE-016 | Point of Sale | NOT_STARTED | — | |

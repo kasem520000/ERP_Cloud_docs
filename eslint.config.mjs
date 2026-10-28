@@ -76,8 +76,8 @@ export default [
     languageOptions: { parserOptions: { projectService: false } },
   },
   {
-    // PHASE-009 tax + PHASE-010 inventory + PHASE-011 purchasing + PHASE-012 sales
-    files: ['apps/api/src/modules/tax/**','apps/api/test/tax/**','apps/api/src/modules/inventory/**','apps/api/test/inventory/**','apps/api/src/modules/purchasing/**','apps/api/test/purchasing/**','apps/api/src/modules/sales/**','apps/api/test/sales/**'],
+    // PHASE-009 tax + PHASE-010 inventory + PHASE-011 purchasing + PHASE-012 sales + PHASE-013 reporting
+    files: ['apps/api/src/modules/tax/**','apps/api/test/tax/**','apps/api/src/modules/inventory/**','apps/api/test/inventory/**','apps/api/src/modules/purchasing/**','apps/api/test/purchasing/**','apps/api/src/modules/sales/**','apps/api/test/sales/**','apps/api/src/modules/reporting/**','apps/api/test/reporting/**'],
     rules: {
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',

@@ -1,0 +1,1 @@
+export default function ReportingPage(){ return <div className="p-6"><h1>Reporting workspace — FilterBar + ReportViewer + assertion footer + freshness badge + drill links</h1><p>Saved views + run history + export menu + print preview — bilingual AR/EN RTL</p></div>; }
