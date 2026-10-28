@@ -70,12 +70,12 @@ export const baseConfig = tseslint.config(
   },
   {
     // Relax type-checked rules for JS config files and non-src files
-    files: ['**/*.js', '**/*.cjs', '**/*.mjs', '**/*.config.ts', '**/test/**/*.ts', '**/*.test.ts', '**/*.spec.ts', 'scripts/**/*'],
+    files: ['**/*.js', '**/*.cjs', '**/*.mjs', '**/*.config.ts', '**/test/**/*.ts', '**/*.test.ts', '**/*.test.tsx', '**/*.spec.ts', 'scripts/**/*'],
     extends: [tseslint.configs.disableTypeChecked],
   },
   {
     // Test files: allow non-null assertions and console
-    files: ['**/*.test.ts', '**/*.spec.ts', '**/__tests__/**'],
+    files: ['**/*.test.ts', '**/*.test.tsx', '**/*.spec.ts', '**/__tests__/**'],
     rules: {
       '@typescript-eslint/no-non-null-assertion': 'off',
       'no-console': 'off',

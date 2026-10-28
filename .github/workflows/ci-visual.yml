@@ -1,0 +1,13 @@
+name: ci-visual
+on: [push, pull_request]
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --dir packages/ui exec playwright test tests/visual --reporter=list
+        # threshold 0, AR+EN mandatory, budgets ≤5min, changeset required on baseline change
+      - run: python3 scripts/check-ui-catalog-coverage.ts

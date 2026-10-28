@@ -12,7 +12,7 @@ evidence) · `BLOCKED` (with reason) · `WAIVED` (with decision record).
 
 ## Current state: BLUEPRINT v1.1 + PHASE-001 COMPLETE + PHASE-002 COMPLETE
 
-The repository now contains the documentation blueprint + PHASE-001 foundation + PHASE-002 database substrate (Drizzle, RLS, audit guard, pg-boss, files, readiness). See [../handoff/CURRENT_STATE.md](../handoff/CURRENT_STATE.md).
+The repository now contains the blueprint + PHASE-001..005 COMPLETE (design system v1.0.0, tokens, 30 components, shell, i18n/RTL, visual harness).
 
 | Phase | Title | Status | Completion report | Notes |
 |-------|-------|--------|-------------------|-------|
@@ -20,7 +20,7 @@ The repository now contains the documentation blueprint + PHASE-001 foundation +
 | PHASE-002 | Database & Migration Infrastructure | COMPLETE | [reports/PHASE-002-COMPLETION.md](../implementation/phases/reports/PHASE-002-COMPLETION.md) | Drizzle + migrations 0001/0002 + RLS + audit + pg-boss + files + ready |
 | PHASE-003 | Identity, Multi-Tenancy & Audit Core | COMPLETE | [reports/PHASE-003-COMPLETION.md](../implementation/phases/reports/PHASE-003-COMPLETION.md) | `0003_identity_core.sql` + identity (8 tables, RLS, sessions/MFA/RBAC/tenant-context) + seeds/permissions drift + mailpit + UI AR/EN RTL + 70 tests |
 | PHASE-004 | Tenant Provisioning & Platform Admin | COMPLETE | [reports/PHASE-004-COMPLETION.md](../implementation/phases/reports/PHASE-004-COMPLETION.md) | `0004_tenancy_provisioning.sql` + `0005_accounts_schema.sql` + tenancy module (registration/onboarding/branches/entitlements/settings/lifecycle/support) + PlatformScope console + 87 tests |
-| PHASE-005 | Design System, i18n & RTL | NOT_STARTED | — | |
+| PHASE-005 | Design System, i18n & RTL Foundation | COMPLETE | [reports/PHASE-005-COMPLETION.md](../implementation/phases/reports/PHASE-005-COMPLETION.md) | `@erp/ui` v1.0.0 · tokens+30 components+shell+i18n/RTL+visual+a11y+CSP — tag `phase/005` |
 | PHASE-006 | Master Data | NOT_STARTED | — | |
 | PHASE-007 | Accounting Core & Posting Engine | NOT_STARTED | — | |
 | PHASE-008 | Treasury & Expenses | NOT_STARTED | — | |

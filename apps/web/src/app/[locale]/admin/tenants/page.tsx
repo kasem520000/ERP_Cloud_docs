@@ -1,11 +1,13 @@
-export default async function AdminTenantsPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params; const isAr = locale === 'ar';
+import { SearchInput, Button, Tabs, Badge } from '@erp/ui';
+export default async function AdminTenantsPage({ params }: { params: Promise<{ locale: string }> }): Promise<React.JSX.Element> {
+  const { locale } = await params; const isAr=locale==='ar';
   return (
-    <main dir={isAr ? 'rtl' : 'ltr'} className="p-6">
-      <h1 className="text-xl font-bold">{isAr ? 'وحدة تحكم المنصة — المستأجرون' : 'Platform Console — Tenants'}</h1>
-      <input placeholder={isAr ? 'بحث المستأجرين...' : 'Search tenants...'} className="mt-4 w-full max-w-md border p-2 rounded" />
-      <div className="mt-4 flex gap-2"><button className="border px-3 py-1 rounded bg-yellow-100">{isAr ? 'تعليق' : 'Suspend'}</button><button className="border px-3 py-1 rounded bg-green-100">{isAr ? 'استعادة' : 'Restore'}</button><button className="border px-3 py-1 rounded">{isAr ? 'سجل التدقيق' : 'Audit'}</button></div>
-      <p className="mt-4 text-xs text-gray-500">PlatformScope audited · via_platform_admin</p>
+    <main dir={isAr?'rtl':'ltr'} className="p-6">
+      <h1 className="text-start text-xl font-bold">{isAr?'وحدة تحكم المنصة — المستأجرون':'Platform Console — Tenants'}</h1>
+      <Tabs tabs={[{ id:'all', label: isAr?'الكل':'All' }, { id:'suspended', label: isAr?'معلق':'Suspended' }]} activeId="all" />
+      <SearchInput placeholder={isAr?'بحث المستأجرين...':'Search tenants...'} className="mt-4 max-w-md" />
+      <div className="mt-4 flex gap-2"><Button variant="secondary">{isAr?'تعليق':'Suspend'}</Button><Button variant="primary">{isAr?'استعادة':'Restore'}</Button><Badge tone="info">{isAr?'2 معلق':'2 suspended'}</Badge></div>
+      <p className="mt-4 text-start text-xs text-[var(--erp-color-gray-500)]">PlatformScope audited · via_platform_admin</p>
     </main>
   );
 }

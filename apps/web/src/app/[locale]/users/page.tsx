@@ -1,14 +1,14 @@
-export default async function UsersPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  const isAr = locale === 'ar';
+import { DataTable, SearchInput, Button, EmptyState } from '@erp/ui';
+export default async function UsersPage({ params }: { params: Promise<{ locale: string }> }): Promise<React.JSX.Element> {
+  const { locale } = await params; const isAr = locale === 'ar';
+  const columns = [{ key:'email', header: isAr ? 'البريد' : 'Email', accessor: (r: { email: string; role: string })=> r.email }, { key:'role', header: isAr ? 'الدور':'Role', accessor: (r: { email: string; role: string })=> r.role }];
   return (
-    <main dir={isAr ? 'rtl' : 'ltr'} className="p-6">
-      <h1 className="text-xl font-bold">{isAr ? 'المستخدمون' : 'Users'}</h1>
-      <p className="text-sm text-gray-500">{isAr ? 'إدارة المستخدمين والأدوار' : 'Manage users and roles'}</p>
-      <table className="mt-4 w-full border text-sm">
-        <thead><tr><th className="border p-2">{isAr ? 'البريد' : 'Email'}</th><th className="border p-2">{isAr ? 'الدور' : 'Role'}</th><th className="border p-2">{isAr ? 'الحالة' : 'Status'}</th></tr></thead>
-        <tbody><tr><td className="border p-2" colSpan={3}>{isAr ? 'لا يوجد بيانات' : 'No data'}</td></tr></tbody>
-      </table>
+    <main dir={isAr?'rtl':'ltr'} className="p-6">
+      <h1 className="text-start text-xl font-bold">{isAr?'المستخدمون':'Users'}</h1>
+      <SearchInput placeholder={isAr?'بحث...':'Search...'} className="mt-4 max-w-md" />
+      <DataTable rows={[]} columns={columns} aria-label={isAr?'قائمة المستخدمين':'Users list'} />
+      <EmptyState title={isAr?'لا يوجد مستخدمون':'No users'} />
+      <Button variant="secondary" className="mt-4">{isAr?'دعوة مستخدم':'Invite user'}</Button>
     </main>
   );
 }

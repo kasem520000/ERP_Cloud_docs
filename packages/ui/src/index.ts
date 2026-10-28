@@ -1,17 +1,49 @@
-/**
- * @erp/ui — design system barrel (stub for PHASE-001).
- * Full implementation lands in PHASE-005 (tokens, components, RTL rules).
- * This stub proves the package builds and can be imported by apps/web.
- */
+// @erp/ui public barrel — ONLY import surface for apps (DESIGN_SYSTEM §2)
+// tokens
+export * from './tokens/tokens';
+// utils
+export * from './utils/cn';
+export * from './utils/density';
+export * from './utils/bidi';
+export * from './utils/icons';
+export * from './utils/money';
+// primitives (only legal Radix site)
+export * from './primitives/dropdown/index';
+export * from './primitives/radio/index';
+// components
+export * from './components/Button/index';
+export * from './components/IconButton/index';
+export * from './components/Input/index';
+export * from './components/Textarea/index';
+export * from './components/Select/index';
+export * from './components/Combobox/index';
+export * from './components/Checkbox/index';
+export * from './components/RadioGroup/index';
+export * from './components/Switch/index';
+export * from './components/NumberInput/index';
+export * from './components/MoneyInput/index';
+export * from './components/DatePicker/index';
+export * from './components/DateRangePicker/index';
+export * from './components/Badge/index';
+export * from './components/DocumentStatusBadge/index';
+export * from './components/Toast/index';
+export * from './components/Tooltip/index';
+export * from './components/Popover/index';
+export * from './components/Dialog/index';
+export * from './components/Drawer/index';
+export * from './components/EmptyState/index';
+export * from './components/LoadingState/index';
+export * from './components/ErrorState/index';
+export * from './components/Breadcrumbs/index';
+export * from './components/Tabs/index';
+export * from './components/SearchInput/index';
+export * from './components/Pagination/index';
+export * from './components/CommandMenu/index';
+export * from './components/NavigationSidebar/index';
+export * from './components/data-table/index';
+// nav registry
+export * from './components/NavigationSidebar/nav-registry';
+// print + patterns
+export * from './print/templates';
 
-// Minimal placeholder — proves import graph and build pipeline.
-export const UI_VERSION = '0.1.0-stub';
-
-export function cn(...classes: (string | false | null | undefined)[]): string {
-  return classes.filter(Boolean).join(' ');
-}
-
-// Stub component — replaced in PHASE-005 with Tailwind+Radix system.
-export function Placeholder({ children }: { children?: string }): string {
-  return `ui-placeholder:${children ?? 'empty'}`;
-}
+export const UI_VERSION = '1.0.0';

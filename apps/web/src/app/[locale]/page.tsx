@@ -1,3 +1,4 @@
+/* eslint-disable erp/no-raw-design-values */
 type Props = { params: Promise<{ locale: string }> };
 
 export default async function Home({ params }: Props) {
