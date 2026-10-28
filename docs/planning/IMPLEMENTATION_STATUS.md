@@ -29,7 +29,7 @@ The repository now contains the blueprint + PHASE-001..006 COMPLETE (design syst
 | PHASE-011 | Purchasing & Payables | COMPLETE | [reports/PHASE-011-COMPLETION.md](../implementation/phases/reports/PHASE-011-COMPLETION.md) | `0012_purchasing_core.sql` 11 tables+GRN/G-08/AP+INV-009/012/016 — tag `phase/011` |
 | PHASE-012 | Sales & Receivables | COMPLETE | [reports/PHASE-012-COMPLETION.md](../implementation/phases/reports/PHASE-012-COMPLETION.md) | `0013_sales_core.sql` quotations→receipts G-01..G-06 INV-009/013/016/021 — tag `phase/012` |
 | PHASE-013 | Reporting, Statements & Printing | COMPLETE | [reports/PHASE-013-COMPLETION.md](../implementation/phases/reports/PHASE-013-COMPLETION.md) | `0014_reporting_core.sql` report_runs/print_templates 4 templates registry/assertions/exports — tag `phase/013` |
-| PHASE-014 | Subscriptions, Billing & Onboarding | NOT_STARTED | — | MVP gate |
+| PHASE-014 | Subscriptions, Billing & Onboarding | COMPLETE | [reports/PHASE-014-COMPLETION.md](../implementation/phases/reports/PHASE-014-COMPLETION.md) | MVP Gate PASS 2026-10-28 — trial→grace→suspend + sandbox/manual A-009 + limits INV-022 + pricing AR/EN + onboarding A1-A9 + dashboards 4 widgets + notifications + security 0 blockers + NFR-006 PASS + restore 8m12s — tag `release/v1.0.0` |
 | PHASE-015 | Industry Framework & Templates | NOT_STARTED | — | |
 | PHASE-016 | Point of Sale | NOT_STARTED | — | |
 | PHASE-017 | Automotive & Distribution Templates | NOT_STARTED | — | |

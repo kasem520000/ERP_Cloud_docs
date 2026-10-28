@@ -1,6 +1,6 @@
 # PHASE-014 — Subscription, Billing, Onboarding & Dashboards — MVP
 
-> **Status:** PLANNED · **Updated:** 2026-10-27
+> **Status:** COMPLETE · **Updated:** 2026-10-28 — MVP Gate PASS (release/v1.0.0 v1.26.10.0)
 
 ## 1. Phase Overview
 
