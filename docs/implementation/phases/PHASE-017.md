@@ -384,3 +384,9 @@ schema revert otherwise.
   reconciliation) plus the projects dimension from PHASE-007.
   **Next eligible phase: PHASE-018 — Manufacturing & Production** (PHASE-019 parallel-
   eligible; identify only, do not implement).
+
+
+## Deep Execution Evidence — 2026-10-28
+
+- **Suite:** `apps/api/test/foundation/phase-017-deep.spec.ts` — PASS
+- **Evidence:** vitest PASS — deep execution verified files+RLS+services

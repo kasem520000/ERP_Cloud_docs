@@ -62,3 +62,9 @@ Acceptance per `PHASE_ACCEPTANCE_CRITERIA.md` line for PHASE-028.
 - Produce `reports/PHASE-028-COMPLETION.md` with evidence (20 fields).
 - Tag `phase/028` on merge.
 
+
+
+## Deep Execution Evidence — 2026-10-28
+
+- **Suite:** `apps/api/test/foundation/phase-028-deep.spec.ts` — PASS
+- **Evidence:** vitest PASS — deep execution verified files+RLS+services

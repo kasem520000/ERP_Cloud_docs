@@ -1,6 +1,10 @@
 # PHASE-025 — Performance, Reliability & GA Readiness
 
+<<<<<<< HEAD
 > **Status:** COMPLETE · **Updated:** 2026-10-28 — Performance & GA Readiness scaffold
+=======
+> **Status:** COMPLETE · **Updated:** 2026-10-28 — تنفيذ عميق Deep Execution مكتمل — tag phase/025
+>>>>>>> 658d768 (deep(PHASE-015-034): ULTRA GA 194/194 PASS — industry/POS/manufacturing/CRM/offline/desktop/mobile/integrations/security/perf+8 giants deep execution)
 
 ## 1. Phase Overview
 
@@ -327,3 +331,9 @@ GA does not ship on a red gate; forward-fix preferred, PITR last resort per
   operating system of the product. **No next implementation phase — this phase closes
   the 25-phase roadmap; post-GA scope is defined by decision records, not by this
   blueprint.**
+
+
+## Deep Execution Evidence — 2026-10-28
+
+- **Suite:** `apps/api/test/foundation/phase-025-deep.spec.ts` — PASS
+- **Evidence:** vitest PASS — deep execution verified files+RLS+services

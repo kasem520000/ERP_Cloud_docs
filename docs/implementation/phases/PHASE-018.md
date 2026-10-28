@@ -329,3 +329,9 @@ dev-only schema revert otherwise; no existing posting rule is touched by rollbac
   **Next eligible phase: PHASE-019 — CRM, Service Contracts & Projects**
   (parallel-eligible with 018 per the graph if 018 completed first; identify only, do
   not implement).
+
+
+## Deep Execution Evidence — 2026-10-28
+
+- **Suite:** `apps/api/test/foundation/phase-018-deep.spec.ts` — PASS
+- **Evidence:** vitest PASS — deep execution verified files+RLS+services
