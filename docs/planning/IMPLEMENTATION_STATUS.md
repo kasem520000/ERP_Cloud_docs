@@ -25,7 +25,7 @@ The repository now contains the blueprint + PHASE-001..006 COMPLETE (design syst
 | PHASE-007 | Accounting Core & Posting Engine | COMPLETE | [reports/PHASE-007-COMPLETION.md](../implementation/phases/reports/PHASE-007-COMPLETION.md) | `0007_accounting_core.sql` + `0008_journal_tables.sql` + posting engine (INV-001..009/011/013-015/020-022, G-16/19/20) + approval/recurring/GL/numbering + 197 tests — tag `phase/007` |
 | PHASE-008 | Treasury & Expenses | COMPLETE | [reports/PHASE-008-COMPLETION.md](../implementation/phases/reports/PHASE-008-COMPLETION.md) | `0009_treasury.sql` 10 tables + cash_accounts/movements INV-019 + receipts/payments/allocations INV-016 + transfers G-12 + expenses BR-023 + shifts BR-021 + bank rec BR-022 + FX G-06 — tag `phase/008` |
 | PHASE-009 | Tax Engine & Jurisdiction Packs | COMPLETE | [reports/PHASE-009-COMPLETION.md](../implementation/phases/reports/PHASE-009-COMPLETION.md) | `0010_tax.sql` + 6 treatments + 10 packs REQUIRES_VERIFICATION + resolver deterministic + VAT return INV-012 + fake einvoicing — tag `phase/009` |
-| PHASE-010 | Inventory & Warehousing | NOT_STARTED | — | |
+| PHASE-010 | Inventory & Warehousing | COMPLETE | [reports/PHASE-010-COMPLETION.md](../implementation/phases/reports/PHASE-010-COMPLETION.md) | `0011_inventory_core.sql` 11 tables+stock_moves immutable+WAC/FIFO 6dp+transfers/counts/tracking/reservations+INV-010 — tag `phase/010` |
 | PHASE-011 | Purchasing & Payables | NOT_STARTED | — | |
 | PHASE-012 | Sales & Receivables | NOT_STARTED | — | |
 | PHASE-013 | Reporting, Statements & Printing | NOT_STARTED | — | |

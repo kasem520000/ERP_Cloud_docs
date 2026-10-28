@@ -18,3 +18,4 @@ export * from './journal.js';
 export * from './accounting-aux.js';
 export * from './treasury.js';
 export * from './tax.js';
+export * from './inventory.js';

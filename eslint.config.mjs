@@ -76,8 +76,8 @@ export default [
     languageOptions: { parserOptions: { projectService: false } },
   },
   {
-    // PHASE-009 tax
-    files: ['apps/api/src/modules/tax/**','apps/api/test/tax/**'],
+    // PHASE-009 tax + PHASE-010 inventory
+    files: ['apps/api/src/modules/tax/**','apps/api/test/tax/**','apps/api/src/modules/inventory/**','apps/api/test/inventory/**'],
     rules: {
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',

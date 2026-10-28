@@ -112,3 +112,58 @@ Per-jurisdiction REGISTERED/NOT_REGISTERED/DEREGISTERED, migrated from PHASE-004
 ## `e_invoicing_submissions` — schema only (PHASE-009, impl 023)
 
 doc_type, doc_id, adapter_id, status PENDING→ACCEPTED/REJECTED, payload/response files.
+
+## `warehouses` — branch-linked (PHASE-010)
+
+Per-branch, tenant-scoped; code unique per tenant+branch; `is_active` soft deactivate.
+
+## `item_warehouse_settings` — per-item per-warehouse defaults (PHASE-010)
+
+`reorder_level` numeric(19,4), `min_qty`, `reorder_qty`; cost method inherited from items.costing_method.
+
+## `stock_moves` — immutable ledger (PHASE-010, append-only 🔒)
+
+| Column | Type | Null | Default | Constraints | Description |
+|--------|------|------|---------|-------------|-------------|
+| `id`, `tenant_id` | uuid | no | — | UNIQUE(id,tenant_id) | — |
+| `item_id`, `warehouse_id` | uuid | no | — | FK | — |
+| `direction` | text | no | — | ck IN/OUT | — |
+| `move_kind` | text | no | — | — | receipt/issue/transfer/adjust/opening |
+| `qty` | numeric(19,4) | no | — | CHECK >0 | — |
+| `unit_cost` | numeric(19,6) | no | — | 6dp | — |
+| `value_amount` | numeric(19,4) | no | — | qty*unit_cost | — |
+| `source_type/id` | text/uuid | no | — | — | provenance |
+| `moved_at` | timestamptz | no | now() | tenant-first idx | — |
+
+Append-only: REVOKE UPDATE/DELETE + trg_stock_moves_immutable.
+
+## `stock_layers` — FIFO layers (PHASE-010)
+
+Per receipt layer: qty, unit_cost, remaining_qty; consumed oldest-first; Σ remaining = item_stock.qty.
+
+## `item_stock` — read model (PHASE-010)
+
+Tenant/item/warehouse unique; qty numeric(19,4), avg_cost numeric(19,6) WAC; maintained transactionally with moves.
+
+## `item_batches` / `item_serials` — tracking (PHASE-010)
+
+Batches: batch_no unique per item+tenant, expiry_date; FEFO order. Serials: serial_no unique, status in_stock/sold/returned BR-018.
+
+## `stock_transfers` / `stock_transfer_lines` — DRAFT→IN_TRANSIT→POSTED (PHASE-010)
+
+Head: from/to warehouse, status, posted_journal_id (only distinct accounts G-15). Lines: item, qty.
+
+## `stock_counts` / `stock_count_lines` — DRAFT→COUNTED→VARIANCE_REVIEW→POSTED (PHASE-010)
+
+Head: warehouse, is_blind, snapshot_at. Lines: system_qty frozen, counted_qty, variance_qty, reason COUNT_LOSS/GAIN/EXPIRED/DAMAGE.
+
+## `stock_reservations` — soft reservations (PHASE-010)
+
+| Column | Type | Null | Default | Description |
+|--------|------|------|---------|-------------|
+| `holder_type/id` | text/uuid | no | — | sales order etc |
+| `qty` | numeric(19,4) | no | — | reserved |
+| `expires_at` | timestamptz | no | — | TTL |
+| `status` | text | no | ACTIVE | ACTIVE/EXPIRED/RELEASED |
+
+Availability = onHand − reserved ACTIVE − inTransit; reorder job emits stock.below_reorder.
