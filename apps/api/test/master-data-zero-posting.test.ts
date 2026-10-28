@@ -35,9 +35,9 @@ describe('PHASE-006 zero-posting proof', () => {
       expect(c).not.toContain('journal_lines');
       expect(c).not.toContain('accounting');
     }
-    // app.module does not import accounting module
+    // PHASE-007 adds accounting — partners/items services still must not import accounting, but app.module now does
     const appMod = fs.readFileSync(resolveRoot('apps/api/src/app.module.ts'), 'utf8');
-    expect(appMod).not.toContain('AccountingModule');
+    expect(appMod).toContain('AccountingModule');
   });
   it('boundary lint: partners/items do not depend on accounting (DEPENDENCY_RULES)', () => {
     // This is enforced by packages/config/eslint boundaries element-types:

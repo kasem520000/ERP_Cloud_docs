@@ -76,6 +76,22 @@ export default [
     languageOptions: { parserOptions: { projectService: false } },
   },
   {
+    // PHASE-007 accounting DB-any relaxation (pool.query returns any, numbering any)
+    files: ['apps/api/src/modules/accounting/**'],
+    rules: {
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/no-unnecessary-type-assertion': 'off',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-explicit-any': 'off',
+      'no-constant-condition': 'off',
+      'no-constant-binary-expression': 'off',
+    },
+  },
+  {
     // PHASE-006 master-data DB-any relaxation (pool.query returns any)
     files: ['apps/api/src/modules/partners/**', 'apps/api/src/modules/items/**'],
     rules: {

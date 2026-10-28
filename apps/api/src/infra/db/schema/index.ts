@@ -12,3 +12,7 @@ export * from './item-categories.js';
 export * from './uoms.js';
 export * from './items.js';
 export * from './partners.js';
+export * from './fiscal-years.js';
+export * from './exchange-rates.js';
+export * from './journal.js';
+export * from './accounting-aux.js';
