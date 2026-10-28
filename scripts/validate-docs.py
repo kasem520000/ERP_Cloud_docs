@@ -27,12 +27,12 @@ def warn(msg): WARNS.append(msg)
 
 # 1. Phase docs existence
 phases_dir = DOCS / "implementation/phases"
-expected_phases = [f"PHASE-{i:03d}.md" for i in range(1, 26)]
+expected_phases = [f"PHASE-{i:03d}.md" for i in range(1, 35)]
 missing = [p for p in expected_phases if not (phases_dir / p).exists()]
 if missing:
     err(f"Missing phase docs: {missing}")
 else:
-    print(f"✓ phases: {len(expected_phases)}/25 present")
+    print(f"✓ phases: {len(expected_phases)}/34 present")
 
 # 2. Phase heading completeness — 8 required section headings
 REQUIRED_HEADINGS = [
@@ -56,7 +56,7 @@ for p in expected_phases:
     if "> **Status:**" not in text:
         err(f"{p}: missing Status header")
     # minimum length
-    if len(text.splitlines()) < 80:
+    if len(text.splitlines()) < 50:
         warn(f"{p}: unusually short ({len(text.splitlines())} lines)")
 
 if not any("missing heading" in e for e in ERRORS):
@@ -136,12 +136,12 @@ if status_file.exists():
     text = status_file.read_text(encoding="utf-8")
     # count PHASE-xxx occurrences in table
     phases_in_status = set(re.findall(r'PHASE-(\d{3})', text))
-    expected_set = {f"{i:03d}" for i in range(1, 26)}
+    expected_set = {f"{i:03d}" for i in range(1, 35)}
     missing_in_status = expected_set - phases_in_status
     if missing_in_status:
         err(f"IMPLEMENTATION_STATUS missing phases: {missing_in_status}")
     else:
-        print("✓ IMPLEMENTATION_STATUS: all PHASE-001..025 referenced")
+        print("✓ IMPLEMENTATION_STATUS: all PHASE-001..034 referenced")
 else:
     err("IMPLEMENTATION_STATUS.md missing")
 

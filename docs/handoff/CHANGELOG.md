@@ -21,3 +21,21 @@ Format: `DATE — item — type` where type ∈ {BLUEPRINT, PHASE-NNN, DOCS, BRE
 
 **Deferred:** business tables/users, full tenants profile, provisioning, Redis, backup automation (explicit per PHASE-002 §2 out-of-scope).
 
+
+### 2026-10-28 — EXP-001 Giant Expansion — Blueprint 25→34 phases (commit arena/980b5f7a-erp-cloud-docs)
+
+**Decision:** Owner directive: no time limit — make system giant to compete with Al-Ameen/AlMotakamel/ONYX/Rasid (55 sectors). SCOPE_AND_NON_GOALS non-goals lifted via DR: payroll/HR/GOSI, fixed assets, hospitals/schools/agriculture, wholesale/electronics, consolidation now in-scope.
+
+**Docs impacted:**
+- `planning/MASTER_ROADMAP.md` — 25→34 phases, 11 stages, ULTRA GA gate
+- `SCOPE_AND_NON_GOALS.md` — tiers + in-scope added, non-goals trimmed 10→7, deferrals mapped to 026/027/034
+- `database/ENTITY_CATALOG.md` — +26 tables (fixed_assets 4, workforce 8, wholesale/electronics 4, healthcare 4, education 5, agriculture 6, consolidation 3) → ~110 total
+- `product/INDUSTRY_CATALOG.md` — 8→14 templates (+wholesale, electronics_mobile, healthcare, education, agriculture)
+- `PRODUCT_REQUIREMENTS.md` — +12 FR (ACC+/HR/WHO/ELE/HLT/EDU/AG/GRP)
+- `product/FEATURE_CATALOG.md` — +11 feature keys (fixed_assets.*, workforce.*, wholesale.*, electronics.*, healthcare.*, education.*, agriculture.*, consolidation.*)
+- `architecture/MODULE_BOUNDARIES.md` — +9 modules (fixed_assets, workforce, wholesale, electronics, healthcare, education, agriculture, consolidation)
+- `planning/PHASE_ACCEPTANCE_CRITERIA.md` — 026–034 criteria, `planning/PHASE_DEPENDENCY_GRAPH.md`, 9 new phase docs 026–034, `architecture/ADR/ADR-0017-giant-expansion.md`, `scripts/validate-docs.py` → 34 phases
+- Validation: PASSED 34/34 phases, 18 ADRs, 0 broken links
+
+**Core note (user request):** PHASE-002 financial core (RLS, audit triggers, posting-engine foundations) confirmed extensible — new asset/payroll postings will reuse `erp.current_tenant_id()` + posting engine (ADR-0007) without reopening 002; future migrations add tables/triggers atop proven substrate.
+

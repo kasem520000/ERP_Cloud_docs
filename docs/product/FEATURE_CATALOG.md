@@ -1,6 +1,6 @@
 # Feature Catalog
 
-> **Status:** STABLE · **Owner:** Product & Platform Architecture · **Updated:** 2026-10-27
+> **Status:** STABLE · **Owner:** Product & Platform Architecture · **Updated:** 2026-10-28 — EXP-001 giant features
 
 The canonical, exhaustive registry of product features. Every feature has exactly one
 **feature key** (`module.feature_name`). This file is the single source of truth referenced by:
@@ -36,7 +36,7 @@ the maintenance protocol in §5.
 2. **Module segment** MUST be one of the 16 catalog modules below (which map 1:1 or as
    documented aggregates to the module catalog): `platform`, `accounting`, `partners`,
    `items`, `inventory`, `sales`, `purchasing`, `treasury`, `tax`, `reporting`, `crm`,
-   `manufacturing`, `distribution`, `pos`, `offline`, `industry`.
+   `manufacturing`, `distribution`, `pos`, `offline`, `industry`, `fixed_assets`, `workforce`, `wholesale`, `electronics`, `healthcare`, `education`, `agriculture`, `consolidation`.
 3. **Feature segment** is a noun or noun-phrase describing the user-visible capability
    (`invoices`, `stock_counts`, `bank_reconciliation`) — never a verb, never a phase, never a
    screen name.
@@ -64,6 +64,7 @@ the maintenance protocol in §5.
 | **1** | PHASE-015…019 | Industry expansion, POS, manufacturing, CRM |
 | **2** | PHASE-020…022 | Offline sync foundation and native clients |
 | **3** | PHASE-023…025 | Integrations, enterprise hardening, GA-tier features |
+| **G** | PHASE-026…034 | Giant parity: assets/HR/wholesale/electronics/healthcare/education/agriculture/consolidation |
 
 Priority is derived from the delivering phase. Where [../PRODUCT_REQUIREMENTS.md](../PRODUCT_REQUIREMENTS.md)
 groups a capability in a different tier (e.g., manufacturing at PHASE-018 is grouped with
@@ -328,3 +329,21 @@ The industry template engine (PHASE-015) — templates detailed in
    note for tenants holding the entitlement.
 4. **Completeness rule**: phase completion reports must list every feature key their phase
    delivers and confirm each exists in this catalog — orphan keys fail review.
+
+## 4. Module: fixed_assets, workforce, wholesale, electronics, healthcare, education, agriculture, consolidation (Giant 026–034)
+
+| Feature key | Name (EN · AR) | Description | Priority | Phase | Permission key | Depends on |
+|---|---|---|---|---|---|---|
+| `fixed_assets.register` | Asset register · سجل الأصول | Register, categorize, capitalize, track location/custodian | G | 026 | `fixed_assets.register.manage` | `accounting.chart_of_accounts` |
+| `fixed_assets.depreciation` | Depreciation · الإهلاك | Straight-line/declining/units schedules, monthly posting, revaluation/disposal | G | 026 | `fixed_assets.depreciation.post` | `fixed_assets.register` |
+| `workforce.employees` | Employees · الموظفون | Master, contracts, departments, grades | G | 027 | `workforce.employees.manage` | `platform.users_roles` |
+| `workforce.payroll` | Payroll · الرواتب | Elements, runs, approvals, posting, payslips | G | 027 | `workforce.payroll.manage` | `workforce.employees` |
+| `workforce.attendance` | Attendance · الحضور | Shifts, check-in/out, leave, overtime | G | 028 | `workforce.attendance.manage` | `workforce.employees` |
+| `wholesale.tier_pricing` | Tier pricing · تسعير شرائح | Volume tiers, bulk/multipack, promotions | G | 029 | `wholesale.pricing.manage` | `sales.invoices` |
+| `electronics.warranty` | Warranty & RMA · الضمان | Serial/IMEI warranty, RMA, repair tickets | G | 030 | `electronics.warranty.manage` | `inventory.serial_tracking` |
+| `healthcare.patients` | Patients · المرضى | Registry, appointments, encounters, billing | G | 031 | `healthcare.patients.manage` | `sales.invoices` |
+| `education.students` | Students · الطلاب | Registry, enrollments, fees, results | G | 032 | `education.students.manage` | `sales.invoices` |
+| `agriculture.farms` | Farms · المزارع | Farms, crops, livestock, harvest/yield | G | 033 | `agriculture.farms.manage` | `inventory.stock_ledger` |
+| `consolidation.groups` | Group consolidation · التوحيد | Multi-entity groups, intercompany eliminations, group statements | G | 034 | `consolidation.groups.manage` | `accounting.fiscal_calendar` |
+
+## 5. Maintenance protocol

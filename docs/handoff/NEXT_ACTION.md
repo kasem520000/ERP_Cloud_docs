@@ -32,3 +32,5 @@
 
 Next eligible: PHASE-004 (Tenant Provisioning & Platform Admin) — prerequisites will be satisfied after PHASE-003's identity substrate lands.
 
+> **Giant roadmap:** After PHASE-025 (GA), 9 giant phases (026–034) deliver fixed assets/HR/wholesale/electronics/healthcare/education/agriculture/consolidation for ULTRA GA. See `docs/planning/MASTER_ROADMAP.md` (11 stages).
+

@@ -1,6 +1,6 @@
 # Current State
 
-> **Status:** LIVING DOCUMENT — updated at every phase completion · **Updated:** 2026-10-28
+> **Status:** LIVING DOCUMENT — updated at every phase completion · **Updated:** 2026-10-28 — EXP-001 Giant Expansion (25→34 phases)
 
 What actually exists in this repository right now. Paired with
 [../planning/IMPLEMENTATION_STATUS.md](../planning/IMPLEMENTATION_STATUS.md) (phase
@@ -34,7 +34,7 @@ pnpm typecheck  → 8 tasks successful
 pnpm test       → 109 tests passed (57 domain-core + 5 contracts + 47 api), 0 failed — see PHASE-002-COMPLETION.md evidence
 pnpm lint       → eslint . --max-warnings 0 green (boundaries + import + dependency-cruiser)
 pnpm build      → 5 tasks successful (api + web + 3 packages, web SSG /en /ar 102kB)
-python3 scripts/validate-docs.py → PASSED (0 broken links, 25/25 phase headings, 17 ADRs, 8 manifests)
+python3 scripts/validate-docs.py → PASSED (0 broken links, 34/34 phases, 18 ADRs incl. ADR-0017, 8 manifests)
 bash scripts/check-boundaries.sh → PASSED (depcruise 0 violations, fixture 1 error correctly detected)
 # DB CI (CI-only with live PG): pnpm db:migrate (fresh+regression) + check-rls + check-catalog + RLS A1/A3/guard probes — see .github/workflows/ci-db.yml
 ```
@@ -47,9 +47,18 @@ bash scripts/check-boundaries.sh → PASSED (depcruise 0 violations, fixture 1 e
 - Docs: ENTITY_CATALOG, TABLES/tenancy-identity, ERD/tenancy-identity, DEVELOPMENT_SETUP synced; validation PASSED
 - Completion report: `docs/implementation/phases/reports/PHASE-002-COMPLETION.md`
 
+## GIANT EXPANSION — EXP-001 (2026-10-28)
+
+**Decision:** Blueprint expanded 25 → 34 phases (11 stages) to achieve giant parity vs Al-Ameen/AlMotakamel/ONYX/Rasid-55.
+
+- **New scope committed:** Fixed assets & multi-method depreciation (026), HR/payroll/GOSI/EOS (027-028), wholesale tier pricing (029), electronics/mobiles warranty/RMA/repair (030), healthcare HIS Lite (031), education SIS Lite (032), agriculture/livestock (033), group consolidation + hyperscale (034).
+- **Docs updated:** SCOPE_AND_NON_GOALS (non-goals → in-scope), MASTER_ROADMAP (34 phases), ENTITY_CATALOG (+26 tables → ~110), INDUSTRY_CATALOG (8 → 14 templates), PRODUCT_REQUIREMENTS (FR-ACC/HR/WHO/ELE/HLT/EDU/AG/GRP), FEATURE_CATALOG (+11 feature keys), MODULE_BOUNDARIES (+9 modules), PHASE_ACCEPTANCE_CRITERIA (026–034), PHASE_DEPENDENCY_GRAPH, ADR-0017.
+- **Validation:** `validate-docs.py` passes 34/34 phases, 18 ADRs, 0 broken links.
+- **Impact on implemented code:** PHASE-002 financial core remains valid — its RLS/posting foundations are extended, not reopened. Future asset/payroll postings will reuse `erp.current_tenant_id()` and posting engine (ADR-0007).
+
 ## Known open items
 
 - Open questions OQ-001…OQ-010 in [../ASSUMPTIONS_AND_OPEN_QUESTIONS.md](../ASSUMPTIONS_AND_OPEN_QUESTIONS.md)
 - Decision records OPEN under [../decisions/](../decisions/README.md)
 - Risks under watch: [../planning/RISK_REGISTER.md](../planning/RISK_REGISTER.md) top-5
-- Next phase: PHASE-002 (DB & migrations) — prerequisites satisfied (PHASE-001 COMPLETE with evidence).
+- Next phase: PHASE-003 (Identity) — prerequisites satisfied (PHASE-002 COMPLETE). Giant phases 026–034 await after 025 (see MASTER_ROADMAP).

@@ -1,6 +1,6 @@
 # Implementation Status
 
-> **Status:** LIVING DOCUMENT — updated at every phase completion · **Updated:** 2026-10-28
+> **Status:** LIVING DOCUMENT — updated at every phase completion · **Updated:** 2026-10-28 — EXP-001 34 phases
 
 Single source of truth for what is **actually implemented** (vs. documented vs. planned).
 Agents MUST keep this in sync with reality; the roadmap describes intent, this file
@@ -41,6 +41,15 @@ The repository now contains the documentation blueprint + PHASE-001 foundation +
 | PHASE-023 | Integrations & E-Invoicing | NOT_STARTED | — | |
 | PHASE-024 | Security Hardening | NOT_STARTED | — | |
 | PHASE-025 | Performance & GA Readiness | NOT_STARTED | — | GA gate |
+| PHASE-026 | Fixed Assets & Depreciation — Full Cycle | NOT_STARTED | — | Giant #1 — posting via engine |
+| PHASE-027 | HR Core & Payroll Engine | NOT_STARTED | — | Giant #2 — GOSI/posting |
+| PHASE-028 | Attendance, Leave & Advanced HR | NOT_STARTED | — | Giant #3 |
+| PHASE-029 | Wholesale & Bulk Commerce Pro | NOT_STARTED | — | Giant #4 — tier pricing |
+| PHASE-030 | Electronics, Mobiles & Warranty Service | NOT_STARTED | — | Giant #5 — warranty/RMA |
+| PHASE-031 | Healthcare — Hospital/Clinic (HIS Lite) | NOT_STARTED | — | Giant #6 |
+| PHASE-032 | Education — School/Institute (SIS Lite) | NOT_STARTED | — | Giant #7 |
+| PHASE-033 | Agriculture, Livestock & Farm Management | NOT_STARTED | — | Giant #8 |
+| PHASE-034 | Group Consolidation & Hyperscale | NOT_STARTED | — | ULTRA GA |
 
 ## Cross-cutting status
 

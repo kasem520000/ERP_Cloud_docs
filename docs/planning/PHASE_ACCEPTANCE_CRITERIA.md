@@ -1,6 +1,6 @@
 # Phase Acceptance Criteria
 
-> **Status:** STABLE · **Owner:** Platform Architecture · **Updated:** 2026-10-27
+> **Status:** STABLE · **Owner:** Platform Architecture · **Updated:** 2026-10-28 — EXP-001 34 phases
 
 Consolidated, objective acceptance criteria and exit gates per phase. The authoritative,
 expanded version lives in each phase document's sections 6–8 ("Verification",
@@ -51,6 +51,15 @@ Universal criteria apply to all phases (from
 | 023 | **No-fabrication gate**: ZATCA adapter implemented only against pinned official specifications with verification checklist evidence (sandbox exercised, sample invoices validated, legal review); submission registry state machine + retries + alerting; QR/signature verified against official test vectors; fake-authority harness tests (submission, rejection, timeout, retry); payment provider production adapter; **INCOMPLETE status rules honored when gating decisions (OQ-004/DR-001) are open — no silent completion** |
 | 024 | Pen test per [../security/SECURITY_TEST_PLAN.md](../security/SECURITY_TEST_PLAN.md) scope executed; findings remediated/closed per SLA; MFA enforcement policies per role/plan; rate-limit/lockout hardening verified; secrets rotation drill executed once; dependency/SBOM triage; audit review tooling; privacy notices legal-review task tracked (OQ-009 decision record) |
 | 025 | Load tests at 10× projection meet NFR-006 (k6 evidence, T-01…T-08); soak test; DR drill within RTO with timing evidence (region-loss tabletop + cross-region restore rehearsal); cold backup-restore by second engineer; runbooks cold-run validated; SLO dashboards + error budgets live; docs-drift final validation; **GA gate checklist green** ([MASTER_ROADMAP.md](MASTER_ROADMAP.md) §Release gates) |
+| 026 | Asset register with categories + useful life; straight-line/declining/units depreciation posts balanced journals; disposal/revaluation posts correctly; asset count reconciles to GL (INV-010 extended); INV-022 config cannot bypass |
+| 027 | Employees/contracts/departments/grades CRUD; payroll elements + runs post net/gross/deductions to GL; GOSI calc per country pack; payslip AR/EN; payroll idempotent per (tenant, period) |
+| 028 | Shifts/attendance import + leave workflow + EOS/gratuity accrual posts; loans/advances deducted in payroll; compliance reports |
+| 029 | Tier/bulk pricing resolves deterministically; wholesale orders apply correct tier; credit wholesale workflows with aging |
+| 030 | Serial/IMEI warranty lookup + expiry; RMA creates adjustment journals; repair ticket consumes parts + posts labor; service contracts bill |
+| 031 | Patient/appointment/encounter CRUD; medical invoice links to sales invoice + insurance split; pharmacy dispense decrements stock; HIS Lite reports |
+| 032 | Student/class/enrollment/fee structure CRUD; fee invoices post to AR; timetable/results with SIS Lite reports |
+| 033 | Farm/crop season/inputs/harvest + livestock/feed; harvest posts to inventory at computed cost; yield reports |
+| 034 | 3-entity group with intercompany docs + eliminations produce balanced group TB/IS/BS; consolidation idempotent; hyperscale load at 20× NFR-006 |
 
 ## Verification evidence requirements
 

@@ -1,6 +1,6 @@
 # Phase Dependency Graph
 
-> **Status:** STABLE · **Owner:** Platform Architecture · **Updated:** 2026-10-27
+> **Status:** STABLE · **Owner:** Platform Architecture · **Updated:** 2026-10-28 — EXP-001 34 phases
 
 Full dependency graph with edge semantics. Nodes: `Pxxx` phases; edges: `A --> B` means
 "B requires A complete with evidence". The graph is validated acyclic by the
@@ -112,3 +112,10 @@ If a phase's scope changes after subsequent phases are complete: the phase docum
 lists "affected downstream phases" — re-run their review checklist
 ([../handoff/IMPLEMENTATION_PROTOCOL.md](../handoff/IMPLEMENTATION_PROTOCOL.md) §6).
 Foundational phases (001–005) changes require full-roadmap review.
+
+
+## Giant expansion dependencies (026–034)
+
+- 025 → 026 → 027 → 028 → 029 → 030 → 031 → 032 → 033 → 034
+- 007 → 026 (posting engine required for assets/payroll)
+- 006 → 029/030 (items/partners for wholesale/electronics)
