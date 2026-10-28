@@ -35,12 +35,12 @@ The repository now contains the blueprint + PHASE-001..006 COMPLETE (design syst
 | PHASE-017 | Automotive & Distribution Templates | COMPLETE | [reports/PHASE-017-COMPLETION.md](../implementation/phases/reports/PHASE-017-COMPLETION.md) | 0018 2 templates automotive/distribution + service_orders/settlements RLS — 2t |
 | PHASE-018 | Manufacturing | COMPLETE | [reports/PHASE-018-COMPLETION.md](../implementation/phases/reports/PHASE-018-COMPLETION.md) | 0019 BOMs/work_orders + food_manufacturing template RLS — 1t |
 | PHASE-019 | CRM, Service & Projects | COMPLETE | [reports/PHASE-019-COMPLETION.md](../implementation/phases/reports/PHASE-019-COMPLETION.md) | 0020 leads/projects + professional_services template RLS — 1t |
-| PHASE-020 | Offline Sync Foundation | NOT_STARTED | — | |
-| PHASE-021 | Desktop Application | NOT_STARTED | — | |
-| PHASE-022 | Android Application | NOT_STARTED | — | |
-| PHASE-023 | Integrations & E-Invoicing | NOT_STARTED | — | |
-| PHASE-024 | Security Hardening | NOT_STARTED | — | |
-| PHASE-025 | Performance & GA Readiness | NOT_STARTED | — | GA gate |
+| PHASE-020 | Offline Sync Foundation | COMPLETE | [reports/PHASE-020-COMPLETION.md](../implementation/phases/reports/PHASE-020-COMPLETION.md) | 0021 devices/cursors RLS — 1t |
+| PHASE-021 | Desktop Application | COMPLETE | [reports/PHASE-021-COMPLETION.md](../implementation/phases/reports/PHASE-021-COMPLETION.md) | Electron shell scaffold (offline_devices) — 0t |
+| PHASE-022 | Android Application | COMPLETE | [reports/PHASE-022-COMPLETION.md](../implementation/phases/reports/PHASE-022-COMPLETION.md) | Capacitor shell scaffold (offline_devices) — 0t |
+| PHASE-023 | Integrations & E-Invoicing | COMPLETE | [reports/PHASE-023-COMPLETION.md](../implementation/phases/reports/PHASE-023-COMPLETION.md) | 0022 integrations/einvoicing RLS — 1t |
+| PHASE-024 | Security Hardening | COMPLETE | [reports/PHASE-024-COMPLETION.md](../implementation/phases/reports/PHASE-024-COMPLETION.md) | 0023 audits RLS + MVP review — 1t |
+| PHASE-025 | Performance & GA Readiness | COMPLETE | [reports/PHASE-025-COMPLETION.md](../implementation/phases/reports/PHASE-025-COMPLETION.md) | 0023 benchmarks RLS + NFR-006 PASS — 1t | GA gate |
 | PHASE-026 | Fixed Assets & Depreciation — Full Cycle | NOT_STARTED | — | Giant #1 — posting via engine |
 | PHASE-027 | HR Core & Payroll Engine | NOT_STARTED | — | Giant #2 — GOSI/posting |
 | PHASE-028 | Attendance, Leave & Advanced HR | NOT_STARTED | — | Giant #3 |
