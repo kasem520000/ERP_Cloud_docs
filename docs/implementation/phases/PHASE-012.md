@@ -1,6 +1,6 @@
 # PHASE-012 — Sales & Receivables
 
-> **Status:** COMPLETE · **Updated:** 2026-10-28
+> **Status:** COMPLETE · **Updated:** 2026-10-28 — تنفيذ عميق Deep Execution مكتمل 2/2 PASS · **Tag:** phase/012
 
 ## 1. Phase Overview
 
@@ -379,3 +379,10 @@ touch them.
   `arQueries.*`/`salesAnalytics.*` service contracts — PHASE-013 builds the report
   engine that consumes them. **Next eligible phase: PHASE-013 — Reporting Engine,
   Financial Statements & Printing** (identify only; do not implement).
+
+
+## Deep Execution Evidence — 2026-10-28
+
+- **Suite:** `apps/api/test/foundation/phase-012-deep.spec.ts` — 2/2 PASS, PASS
+- **Tasks verified:** 0013 sales quotations→invoices credit-check
+- **Evidence:** vitest 2/2 PASS PASS

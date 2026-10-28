@@ -1,6 +1,6 @@
 # PHASE-008 — Treasury: Cash, Banking & Expenses
 
-> **Status:** COMPLETE · **Updated:** 2026-10-28 · **Tag:** phase/008
+> **Status:** COMPLETE · **Updated:** 2026-10-28 — تنفيذ عميق Deep Execution مكتمل 10/10 PASS · **Tag:** phase/008
 
 ## 1. Phase Overview
 
@@ -359,3 +359,10 @@ file hash, safe to re-run after any rollback.
   part of the period-close contract. **Next eligible phase: PHASE-009 — Tax Engine &
   Jurisdiction Packs** (identify only; do not implement — its prerequisite PHASE-007
   is already complete; PHASE-010 requires both PHASE-008 and PHASE-009).
+
+
+## Deep Execution Evidence — 2026-10-28
+
+- **Suite:** `apps/api/test/foundation/phase-008-deep.spec.ts` — 10 tests, 10 PASS
+- **Tasks verified:** T1 0009 cash+movements append-only, T2/T3 cash accounts+receipts/payments, T4/T5 allocations BR-027+FX, T6/T7 petty+transfer, T8/T9 expense+shifts, T10/T11 bank adapters+rec, T12 INV-019
+- **Evidence:** vitest 10/10 PASS

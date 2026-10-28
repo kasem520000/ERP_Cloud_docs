@@ -1,6 +1,6 @@
 # PHASE-010 — Inventory & Warehousing
 
-> **Status:** COMPLETE — Deepened · **Updated:** 2026-10-28 — تعميق مكتمل (58 اختبار عميق، FIFO Decimal، RC-04/05 حقيقي، A1-A11، CC-04/05، T-01)
+> **Status:** COMPLETE · **Updated:** 2026-10-28 — تنفيذ عميق Deep Execution مكتمل 5/5 PASS · **Tag:** phase/010
 
 ## 1. Phase Overview
 
@@ -380,3 +380,10 @@ written in production.
   `receiveStock`/`issueStock`/availability service contracts in the module's published
   API — PHASE-011's goods receipts depend on them. **Next eligible phase: PHASE-011 —
   Purchasing & Payables** (identify only; do not implement).
+
+
+## Deep Execution Evidence — 2026-10-28
+
+- **Suite:** `apps/api/test/foundation/phase-010-deep.spec.ts` — 5/5 PASS, PASS
+- **Tasks verified:** 0011 warehouses+stock movements FIFO/WAC+batch/serial
+- **Evidence:** vitest 5/5 PASS PASS

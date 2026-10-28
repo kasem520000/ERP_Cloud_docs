@@ -1,6 +1,6 @@
 # PHASE-009 — Tax Engine & Jurisdiction Packs
 
-> **Status:** COMPLETE · **Updated:** 2026-10-28 · **Tag:** phase/009
+> **Status:** COMPLETE · **Updated:** 2026-10-28 — تنفيذ عميق Deep Execution مكتمل 5/5 PASS · **Tag:** phase/009
 
 ## 1. Phase Overview
 
@@ -384,3 +384,10 @@ forward-only.
   are the integration seams for PHASE-011/012; the adapter port is the seam for
   PHASE-023. **Next eligible phase: PHASE-010 — Inventory & Warehousing** (identify
   only; do not implement).
+
+
+## Deep Execution Evidence — 2026-10-28
+
+- **Suite:** `apps/api/test/foundation/phase-009-deep.spec.ts` — 5/5 PASS, PASS
+- **Tasks verified:** 0010 tax_treatments+jurisdictions+codes resolver+einvoicing+vAT
+- **Evidence:** vitest 5/5 PASS PASS

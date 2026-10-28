@@ -1,6 +1,6 @@
 # PHASE-011 — Purchasing & Payables
 
-> **Status:** COMPLETE · **Updated:** 2026-10-28
+> **Status:** COMPLETE · **Updated:** 2026-10-28 — تنفيذ عميق Deep Execution مكتمل 2/2 PASS · **Tag:** phase/011
 
 ## 1. Phase Overview
 
@@ -367,3 +367,10 @@ them.
   allocation/subledger service contracts — PHASE-012 mirrors them for AR and reuses the
   posting sequencing discipline. **Next eligible phase: PHASE-012 — Sales &
   Receivables** (identify only; do not implement).
+
+
+## Deep Execution Evidence — 2026-10-28
+
+- **Suite:** `apps/api/test/foundation/phase-011-deep.spec.ts` — 2/2 PASS, PASS
+- **Tasks verified:** 0012 purchasing purchase_orders+GRN+matching
+- **Evidence:** vitest 2/2 PASS PASS
