@@ -1,6 +1,6 @@
 # PHASE-006 — Master Data
 
-> **Status:** COMPLETE · **Updated:** 2026-10-28
+> **Status:** COMPLETE · **Updated:** 2026-10-28 — تنفيذ عميق Deep Execution مكتمل 13/13 PASS
 
 ## 1. Phase Overview
 
@@ -331,3 +331,10 @@ Out of scope (explicit):
   for PHASE-011/012; `items.tax_code_id` awaits its PHASE-009 FK. **Next eligible
   phase: PHASE-007 — Accounting Core & Posting Engine** (identify only; do not
   implement).
+
+
+## Deep Execution Evidence — 2026-10-28
+
+- **Suite:** `apps/api/test/foundation/phase-006-deep.spec.ts` — 13 tests, 13 PASS
+- **Tasks verified:** T1 0006 13 tables RLS pg_trgm, T2/T4 UoM+items, T3 partners BR-025, T5 BR-003 pricing precedence, T6 BR-001 credit-check, T7 opening DRAFT zero-posting, T8 import CSV/XLSX, T9 search pg_trgm, T13 ENTITY_CATALOG
+- **Evidence:** vitest 13/13 PASS 307ms
