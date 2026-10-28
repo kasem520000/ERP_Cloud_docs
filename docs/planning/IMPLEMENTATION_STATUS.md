@@ -12,7 +12,7 @@ evidence) · `BLOCKED` (with reason) · `WAIVED` (with decision record).
 
 ## Current state: BLUEPRINT v1.1 + PHASE-001 COMPLETE + PHASE-002 COMPLETE
 
-The repository now contains the blueprint + PHASE-001..005 COMPLETE (design system v1.0.0, tokens, 30 components, shell, i18n/RTL, visual harness).
+The repository now contains the blueprint + PHASE-001..006 COMPLETE (design system v1.0.0 + master data: partners/items, pricing BR-003, credit BR-001, import, zero-posting).
 
 | Phase | Title | Status | Completion report | Notes |
 |-------|-------|--------|-------------------|-------|
@@ -21,7 +21,7 @@ The repository now contains the blueprint + PHASE-001..005 COMPLETE (design syst
 | PHASE-003 | Identity, Multi-Tenancy & Audit Core | COMPLETE | [reports/PHASE-003-COMPLETION.md](../implementation/phases/reports/PHASE-003-COMPLETION.md) | `0003_identity_core.sql` + identity (8 tables, RLS, sessions/MFA/RBAC/tenant-context) + seeds/permissions drift + mailpit + UI AR/EN RTL + 70 tests |
 | PHASE-004 | Tenant Provisioning & Platform Admin | COMPLETE | [reports/PHASE-004-COMPLETION.md](../implementation/phases/reports/PHASE-004-COMPLETION.md) | `0004_tenancy_provisioning.sql` + `0005_accounts_schema.sql` + tenancy module (registration/onboarding/branches/entitlements/settings/lifecycle/support) + PlatformScope console + 87 tests |
 | PHASE-005 | Design System, i18n & RTL Foundation | COMPLETE | [reports/PHASE-005-COMPLETION.md](../implementation/phases/reports/PHASE-005-COMPLETION.md) | `@erp/ui` v1.0.0 · tokens+30 components+shell+i18n/RTL+visual+a11y+CSP — tag `phase/005` |
-| PHASE-006 | Master Data | NOT_STARTED | — | |
+| PHASE-006 | Master Data | COMPLETE | [reports/PHASE-006-COMPLETION.md](../implementation/phases/reports/PHASE-006-COMPLETION.md) | `0006_partners_items.sql` + 13 tables RLS + partners/items/UoM/pricing/credit/opening/import + 135 tests + zero-posting proof — tag `phase/006` |
 | PHASE-007 | Accounting Core & Posting Engine | NOT_STARTED | — | |
 | PHASE-008 | Treasury & Expenses | NOT_STARTED | — | |
 | PHASE-009 | Tax Engine & Jurisdiction Packs | NOT_STARTED | — | |

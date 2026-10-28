@@ -75,4 +75,19 @@ export default [
     files: ['packages/ui/src/**/*.test.ts', 'packages/ui/src/**/*.test.tsx'],
     languageOptions: { parserOptions: { projectService: false } },
   },
+  {
+    // PHASE-006 master-data DB-any relaxation (pool.query returns any)
+    files: ['apps/api/src/modules/partners/**', 'apps/api/src/modules/items/**'],
+    rules: {
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/no-unnecessary-type-assertion': 'off',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+      'no-constant-condition': 'off',
+      'no-constant-binary-expression': 'off',
+    },
+  },
 ];

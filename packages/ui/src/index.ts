@@ -43,7 +43,10 @@ export * from './components/NavigationSidebar/index';
 export * from './components/data-table/index';
 // nav registry
 export * from './components/NavigationSidebar/nav-registry';
-// print + patterns
+// patterns
+export * from './patterns/PartnerPicker';
+export * from './patterns/ItemPicker';
+// print
 export * from './print/templates';
 
 export const UI_VERSION = '1.0.0';

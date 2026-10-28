@@ -31,6 +31,20 @@ export const PERMISSIONS: { key: string; module: string; description: string }[]
   { key: 'platform.tenants.view', module: 'platform', description: 'View all tenants (platform)' },
   { key: 'platform.tenants.manage', module: 'platform', description: 'Manage tenants (platform)' },
   { key: 'audit.events.view', module: 'audit', description: 'View audit events' },
+  // PHASE-006 master data
+  { key: 'partners.view', module: 'partners', description: 'View partners' },
+  { key: 'partners.create', module: 'partners', description: 'Create partners' },
+  { key: 'partners.update', module: 'partners', description: 'Update partners' },
+  { key: 'partners.archive', module: 'partners', description: 'Archive partners' },
+  { key: 'partners.credit_terms.manage', module: 'partners', description: 'Manage credit terms' },
+  { key: 'items.view', module: 'items', description: 'View items' },
+  { key: 'items.create', module: 'items', description: 'Create items' },
+  { key: 'items.update', module: 'items', description: 'Update items' },
+  { key: 'items.archive', module: 'items', description: 'Archive items' },
+  { key: 'items.price_lists.manage', module: 'items', description: 'Manage price lists' },
+  { key: 'items.import.run', module: 'items', description: 'Run bulk import' },
+  { key: 'files.upload', module: 'files', description: 'Upload attachments' },
+  { key: 'files.view', module: 'files', description: 'View attachments' },
 ];
 
 export async function seedPermissions() {

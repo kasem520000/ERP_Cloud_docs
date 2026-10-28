@@ -7,3 +7,8 @@ export * from './entitlements.js';
 export * from './tenant-settings.js';
 export * from './accounts.js';
 export * from './support-sessions.js';
+export * from './credit-terms.js';
+export * from './item-categories.js';
+export * from './uoms.js';
+export * from './items.js';
+export * from './partners.js';
