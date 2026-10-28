@@ -18,7 +18,7 @@ The repository now contains the documentation blueprint + PHASE-001 foundation +
 |-------|-------|--------|-------------------|-------|
 | PHASE-001 | Repository & Engineering Foundation | COMPLETE | [reports/PHASE-001-COMPLETION.md](../implementation/phases/reports/PHASE-001-COMPLETION.md) | Tag `phase/001` on merge · all gates green |
 | PHASE-002 | Database & Migration Infrastructure | COMPLETE | [reports/PHASE-002-COMPLETION.md](../implementation/phases/reports/PHASE-002-COMPLETION.md) | Drizzle + migrations 0001/0002 + RLS + audit + pg-boss + files + ready |
-| PHASE-003 | Identity, Multi-Tenancy & Audit | NOT_STARTED | — | |
+| PHASE-003 | COMPLETE | 2026-10-28 | `0003_identity_core.sql` + identity module (users/roles/permissions/memberships/sessions/devices/mfa_factors/invitations) + seeds + auth/session/MFA/rate-limit + RBAC + tenant-context + email(mailpit) + UI login/users AR/EN RTL + 70 tests | Identity, Multi-Tenancy & Audit | NOT_STARTED | — | |
 | PHASE-004 | Tenant Provisioning & Platform Admin | NOT_STARTED | — | |
 | PHASE-005 | Design System, i18n & RTL | NOT_STARTED | — | |
 | PHASE-006 | Master Data | NOT_STARTED | — | |

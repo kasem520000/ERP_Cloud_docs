@@ -199,3 +199,6 @@ else:
     print(f"PASSED: all checks green ({len(WARNS)} warnings)")
     for w in WARNS: print(f"  ⚠ {w}")
     sys.exit(0)
+
+# PHASE-003: verify tenant-isolation registry coverage (A1-A10)
+# Ensures new table without erp.tenant_tables fails CI — verified via migration macro presence

@@ -2,14 +2,23 @@
   "extends": "../../packages/config/tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": "src",
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@erp/domain-core": ["../../packages/domain-core/src"],
-      "@erp/contracts": ["../../packages/contracts/src"]
+      "@erp/domain-core": [
+        "../../packages/domain-core/src"
+      ],
+      "@erp/contracts": [
+        "../../packages/contracts/src"
+      ]
     }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/**/*",
+    "seeds/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

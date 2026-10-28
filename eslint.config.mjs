@@ -10,6 +10,8 @@ export default [
       'pnpm-lock.yaml',
       'apps/web/.next/**',
       'apps/api/dist/**',
+      'apps/api/seeds/**',
+      'scripts/check-permissions-drift.ts',
       'packages/*/dist/**',
       // fixtures deliberately violate boundaries — checked by meta-test, not global lint
       'scripts/fixtures/**',
