@@ -202,3 +202,31 @@ ap_allocations payment_id→invoice_id amount INV-016 bounded; payments via trea
 ## `accounts` purposes for purchasing
 
 GRNI, AP_CONTROL, VAT_RECOVERABLE, VAT_EXPENSED, INVENTORY, CASH, FX_GAIN/LOSS.
+
+## `quotations` / `quotation_lines` (PHASE-012)
+
+header customer branch quote_no status DRAFT→SENT→ACCEPTED/REJECTED/EXPIRED valid_until BR-006 30d default; lines item qty unit_price discount tax snapshot.
+
+## `sales_orders` / `sales_order_lines` (PHASE-012)
+
+order header customer warehouse order_no status DRAFT→APPROVED→DELIVERED→INVOICED rep_id soft reservation expiry 60m non-blocking; lines item qty unit_price discount.
+
+## `delivery_notes` / `delivery_note_lines` (PHASE-012)
+
+DN header order customer warehouse delivery_no status DRAFT→POSTED cogs_journal_id; lines item qty unit_cost cogs_amount batch/serial; G-03 DR COGS CR INVENTORY via issueStock.
+
+## `sales_invoices` / `sales_invoice_lines` (PHASE-012)
+
+Invoice header customer branch order delivery invoice_no offline_receipt_no POS-reserved einvoice_status kind CREDIT/CASH status DRAFT→POSTED due_date currency FX numbering per branch/type INV-021; lines item qty unit_price discount tax_snapshot original_cost batch/serial BR-003 pricing + BR-002 ceiling + tax stamp BR-033 NOT_SUBJECT. Posts G-01/G-02/G-03 sequenced §5.
+
+## `credit_notes` / `credit_note_lines` (PHASE-012)
+
+Credit header customer ref_invoice credit_no status amount tax total return_stock boolean original cost re-entry; BR-004 window 14d mandatory reference; G-04 SALES_RETURNS/VAT_PAYABLE + DR INVENTORY CR COGS at original cost.
+
+## `sales_reps` (PHASE-012 attribution only)
+
+user_id code name commission_rate — no commission calc (PHASE-017); attribution on orders/invoices.
+
+## `receipts` extension + `ar_allocations` (PHASE-012)
+
+receipts via treasury (cash/bank/cheque) G-05/G-06 FX; ar_allocations receipt↔invoice INV-016 BR-027 on-account + FIFO suggestion + audited reallocation; aging deterministic as-of BR-028 RC-10.

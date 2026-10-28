@@ -20,3 +20,4 @@ export * from './treasury.js';
 export * from './tax.js';
 export * from './inventory.js';
 export * from './purchasing.js';
+export * from './sales.js';
