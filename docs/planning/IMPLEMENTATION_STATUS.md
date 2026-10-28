@@ -32,7 +32,7 @@ The repository now contains the blueprint + PHASE-001..006 COMPLETE (design syst
 | PHASE-014 | Subscriptions, Billing & Onboarding | COMPLETE | [reports/PHASE-014-COMPLETION.md](../implementation/phases/reports/PHASE-014-COMPLETION.md) | MVP Gate PASS 2026-10-28 — trial→grace→suspend + sandbox/manual A-009 + limits INV-022 + pricing AR/EN + onboarding A1-A9 + dashboards 4 widgets + notifications + security 0 blockers + NFR-006 PASS + restore 8m12s — tag `release/v1.0.0` |
 | PHASE-015 | Industry Framework & Templates | COMPLETE | [reports/PHASE-015-COMPLETION.md](../implementation/phases/reports/PHASE-015-COMPLETION.md) | 0016 registry 3 templates retail/grocery/restaurant v1.0.0 ten-layer engine determinism/BR-038/BR-040 19t — tag `phase/015` |
 | PHASE-016 | Point of Sale | COMPLETE | [reports/PHASE-016-COMPLETION.md](../implementation/phases/reports/PHASE-016-COMPLETION.md) | 0017 pos_terminals/shifts/sales/offline_queue RLS + terminal registry + shift variance + sale via invoice + offline queue — 5t |
-| PHASE-017 | Automotive & Distribution Templates | NOT_STARTED | — | |
+| PHASE-017 | Automotive & Distribution Templates | COMPLETE | [reports/PHASE-017-COMPLETION.md](../implementation/phases/reports/PHASE-017-COMPLETION.md) | 0018 2 templates automotive/distribution + service_orders/settlements RLS — 2t |
 | PHASE-018 | Manufacturing | NOT_STARTED | — | |
 | PHASE-019 | CRM, Service & Projects | NOT_STARTED | — | |
 | PHASE-020 | Offline Sync Foundation | NOT_STARTED | — | |
