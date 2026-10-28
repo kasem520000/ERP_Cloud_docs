@@ -17,9 +17,10 @@ import { SalesModule } from './modules/sales/sales.module.js';
 import { ReportingModule } from './modules/reporting/reporting.module.js';
 import { NotificationsModule } from './modules/notifications/notifications.module.js';
 import { ConfigurationModule } from './modules/configuration/configuration.module.js';
+import { PosModule } from './modules/pos/pos.module.js';
 
 @Module({
-  imports: [HealthModule, AuditModule, FilesModule, JobsModule, TenancyModule, IdentityModule, PartnersModule, ItemsModule, AccountingModule, TreasuryModule, TaxModule, InventoryModule, PurchasingModule, SalesModule, ReportingModule, NotificationsModule, ConfigurationModule],
+  imports: [HealthModule, AuditModule, FilesModule, JobsModule, TenancyModule, IdentityModule, PartnersModule, ItemsModule, AccountingModule, TreasuryModule, TaxModule, InventoryModule, PurchasingModule, SalesModule, ReportingModule, NotificationsModule, ConfigurationModule, PosModule],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer): void {

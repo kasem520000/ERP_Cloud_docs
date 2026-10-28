@@ -1,6 +1,6 @@
 # PHASE-016 — Point of Sale
 
-> **Status:** PLANNED · **Updated:** 2026-10-27
+> **Status:** COMPLETE · **Updated:** 2026-10-28 — 5t terminals/shifts/offline
 
 ## 1. Phase Overview
 
