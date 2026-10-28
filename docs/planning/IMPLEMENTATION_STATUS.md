@@ -10,14 +10,14 @@ describes fact. Evidence = completion reports in
 **Legend:** `NOT_STARTED` · `IN_PROGRESS` · `COMPLETE` (all exit criteria met with
 evidence) · `BLOCKED` (with reason) · `WAIVED` (with decision record).
 
-## Current state: BLUEPRINT v1.1 + PHASE-001 COMPLETE
+## Current state: BLUEPRINT v1.1 + PHASE-001 COMPLETE + PHASE-002 COMPLETE
 
-The repository now contains the documentation blueprint + the PHASE-001 engineering foundation (monorepo, CI, compose, domain primitives). See [../handoff/CURRENT_STATE.md](../handoff/CURRENT_STATE.md) for details.
+The repository now contains the documentation blueprint + PHASE-001 foundation + PHASE-002 database substrate (Drizzle, RLS, audit guard, pg-boss, files, readiness). See [../handoff/CURRENT_STATE.md](../handoff/CURRENT_STATE.md).
 
 | Phase | Title | Status | Completion report | Notes |
 |-------|-------|--------|-------------------|-------|
 | PHASE-001 | Repository & Engineering Foundation | COMPLETE | [reports/PHASE-001-COMPLETION.md](../implementation/phases/reports/PHASE-001-COMPLETION.md) | Tag `phase/001` on merge · all gates green |
-| PHASE-002 | Database & Migration Infrastructure | NOT_STARTED | — | Next eligible phase |
+| PHASE-002 | Database & Migration Infrastructure | COMPLETE | [reports/PHASE-002-COMPLETION.md](../implementation/phases/reports/PHASE-002-COMPLETION.md) | Drizzle + migrations 0001/0002 + RLS + audit + pg-boss + files + ready |
 | PHASE-003 | Identity, Multi-Tenancy & Audit | NOT_STARTED | — | |
 | PHASE-004 | Tenant Provisioning & Platform Admin | NOT_STARTED | — | |
 | PHASE-005 | Design System, i18n & RTL | NOT_STARTED | — | |
@@ -46,17 +46,17 @@ The repository now contains the documentation blueprint + the PHASE-001 engineer
 
 | Area | Status | Evidence |
 |------|--------|----------|
-| Database schema | NONE — no migrations (PHASE-002) | `apps/api/migrations/` absent (compose boots empty PG16) |
-| API | SKELETON — `GET /health/live` only | `apps/api/src/health/` + test |
+| Database schema | 0001_core_infra + 0002_boss_and_rls_macro — tenants minimal, audit_events RLS+guard, file_objects, boss | `apps/api/migrations/` (2 SQL) + `src/infra/db/schema/*` (Drizzle) |
+| API | /health/live + /health/ready (DB+queue), audit/files/jobs modules, tenant-context UoW, pino+request-id+OTel | `apps/api/src/{health,infra,modules}` + 47 tests + ci-db.yml |
 | UI | SKELETON — Next.js `[locale]` RTL/LTR demo | `apps/web/src/app/[locale]/` + build |
 | Packages | `domain-core` v0 (57 tests), `contracts` v0 (5 tests), `ui` stub, `config` | `packages/*/dist` built |
-| Tests | 63 tests passed (unit + property), 0 failed | `pnpm test` (turbo) |
+| Tests | 109 tests passed (57 domain-core + 5 contracts + 47 api incl. RLS/migrations), 0 failed | `pnpm test` (turbo 8 tasks) — Testcontainers integration stubs (skip without Docker, run in CI db job) |
 | Lint/Boundaries | ESLint + boundaries + import + depcruise green; negative meta-test green | `pnpm lint` + `scripts/check-boundaries.sh` |
 | Docs validation | PASSED (0 broken links, 25/25 headings, 8 manifests) | `python3 scripts/validate-docs.py` |
-| CI | Configured (8 jobs: install/typecheck/lint/unit/build/docs/gitleaks/negative) | `.github/workflows/ci.yml` |
+| CI | 8 jobs + db job (PG16 fresh/regression/RLS A1–A5/drift/boss) | `.github/workflows/ci.yml` + `ci-db.yml` + `scripts/check-rls.ts` + `check-catalog-drift.ts` |
 | Security controls | Gitleaks wired, no secrets, CODEOWNERS stub | `.github/CODEOWNERS`, `.env.example` |
 | Compliance | NONE — no jurisdiction pack data verified | — |
-| Deployment | Compose dev stack (postgres/minio/mailpit) + Dockerfiles | `docker-compose.yml`, `apps/*/Dockerfile` |
+| Deployment | Compose dev stack (postgres:16 + erp_migrate/erp_app roles via 0001, minio, mailpit) + Dockerfiles + WORKER_MODE=1 | `docker-compose.yml`, `apps/*/Dockerfile`, `src/infra/jobs` |
 
 ## Update protocol (normative)
 

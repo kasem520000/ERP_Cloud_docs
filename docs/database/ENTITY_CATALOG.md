@@ -1,6 +1,6 @@
 # Entity Catalog
 
-> **Status:** STABLE · **Owner:** Database Architecture · **Updated:** 2026-10-27
+> **Status:** STABLE · **Owner:** Database Architecture · **Updated:** 2026-10-28
 
 All planned entities grouped by owning module, with the phase that introduces them and
 key relationships. This is the catalog-level map; column-level specifications for core
@@ -16,7 +16,7 @@ Legend: **Phase** = first implementation phase · **OC** = offline-creatable
 
 | Entity | Purpose | Key fields / relationships | Phase | OC |
 |--------|---------|---------------------------|-------|----|
-| `tenants` | Customer organizations | name, name_ar, status, base_currency, country_code, timezone, industry_template_id, deleted_at | 003 | no |
+| `tenants` | Customer organizations | id, name, status (minimal stub — full profile 003) | 002 (minimal) → 003 (full) | no |
 | `branches` | Operating units | tenant_id, code, name, name_ar, address, is_active | 004 | no |
 | `users` | Global identity (email/phone unique) | email, phone, password_hash, status, locale, mfa fields | 003 | no |
 | `memberships` | User↔tenant role link | user_id, tenant_id, role_id, branch_scope[], status | 003 | no |
@@ -31,7 +31,7 @@ Legend: **Phase** = first implementation phase · **OC** = offline-creatable
 | `subscriptions` | Tenant plan assignment | tenant_id, plan_id, status, period, provider_ref | 014 | no |
 | `entitlements` | Effective feature grants (materialized) | tenant_id, feature_key, source, expires_at | 004 | no |
 | `tenant_settings` | Key-value config (typed) | tenant_id, key, value jsonb | 004 | no |
-| `audit_events` 🔒 | Immutable audit trail | tenant_id, actor_id, action, entity_type, entity_id, before jsonb, after jsonb, correlation_id, device_id, at | 003 | no |
+| `audit_events` 🔒 | Immutable audit trail | tenant_id, actor_id, action, entity_type, entity_id, before/after jsonb, correlation_id (append-only, RLS) | 002 (infra) → 003 (exposure) | no |
 
 ## accounting (PHASE-007)
 

@@ -10,7 +10,7 @@ table) and [NEXT_ACTION.md](NEXT_ACTION.md).
 
 - **Documentation blueprint v1.1 — COMPLETE** (202 Markdown documents under `docs/` covering vision, product requirements, scope, glossary, architecture, planning, database, product, accounting, industries, localization, api, ui, reporting, offline, security, testing, operations, implementation, decisions, and handoff). Audited via [../CONSOLIDATION_VALIDATION_REPORT.md](../CONSOLIDATION_VALIDATION_REPORT.md) (23/23 checks green).
 
-- **Application code: PHASE-001 FOUNDATION COMPLETE** — monorepo skeleton with strict TypeScript, lint/boundary enforcement, Docker Compose dev environment, CI pipeline, and domain primitives:
+- **Application code: PHASE-001 FOUNDATION COMPLETE + PHASE-002 DATABASE SUBSTRATE COMPLETE** — monorepo + DB/RLS/audit/pg-boss/files/readiness (see PHASE-002 report) —
   - **Monorepo:** `pnpm-workspace.yaml`, `turbo.json`, `.nvmrc`, `.editorconfig`, `.prettierrc`, `pnpm-workspace.yaml`, `eslint.config.mjs`, `.dependency-cruiser.cjs`, `.env.example`, `docker-compose.yml`, `.github/workflows/ci.yml`, `AGENTS.md`, `README.md`
   - **Apps:** `apps/api` (NestJS + `/health/live`), `apps/web` (Next.js 15 + `[locale]` RTL/LTR demo), `apps/desktop` + `apps/mobile` (README stubs for PHASE-021/022)
   - **Packages:** `packages/domain-core` (UUIDv7, Money/Quantity/Rate via decimal.js, Result, errors, CalendarDate + 57 tests), `packages/contracts` (zod registry v0 + error-code enum), `packages/ui` (stub, PHASE-005), `packages/config` (tsconfig bases, eslint base, prettier config)
@@ -22,8 +22,8 @@ table) and [NEXT_ACTION.md](NEXT_ACTION.md).
 ## Status of the world (honest statement per directive §24)
 
 - **Designed:** everything in `docs/` — blueprint is authoritative, validated (23/23 checks).
-- **Implemented:** PHASE-001 only — no business logic, no DB schema, no auth, no accounting engine. Health endpoint is the only API route.
-- **Tested:** PHASE-001 unit/property tests (57 domain-core + 5 contracts + 1 api health) + docs validation + boundary meta-test + build/typecheck/lint all green locally (CI config mirrors this).
+- **Implemented:** PHASE-001 + PHASE-002 — monorepo + database substrate (Drizzle, migrations 0001/0002, RLS tenant isolation, audit append-only, pg-boss, S3 adapter, observability, /health/ready). No business logic yet (explicitly deferred to PHASE-003+).
+- **Tested:** 109 tests (57 domain-core + 5 contracts + 47 api — incl. tenant-context, RLS static, audit guard, migrations, S3, jobs, readiness, integration stubs) + docs validation + boundary meta-test + build/typecheck/lint all green; CI db job proves RLS A1–A3 + guard + fresh/regression migrations.
 - **Verified against official sources:** no compliance item is VERIFIED; all country tax data is BASELINE_RESEARCH with REQUIRES_VERIFICATION flags ([../localization/compliance-matrix/README.md](../localization/compliance-matrix/README.md)).
 - **Production-ready / compliant / secure:** no such claims are made. Gitleaks scanning is wired; no secrets in repo (`.env.example` only).
 
@@ -31,13 +31,21 @@ table) and [NEXT_ACTION.md](NEXT_ACTION.md).
 
 ```
 pnpm typecheck  → 8 tasks successful
-pnpm test       → 63 tests passed (57 domain-core + 5 contracts + 1 api), 0 failed
+pnpm test       → 109 tests passed (57 domain-core + 5 contracts + 47 api), 0 failed — see PHASE-002-COMPLETION.md evidence
 pnpm lint       → eslint . --max-warnings 0 green (boundaries + import + dependency-cruiser)
-pnpm build      → 5 tasks successful (api + web + 3 packages)
+pnpm build      → 5 tasks successful (api + web + 3 packages, web SSG /en /ar 102kB)
 python3 scripts/validate-docs.py → PASSED (0 broken links, 25/25 phase headings, 17 ADRs, 8 manifests)
-bash scripts/check-boundaries.sh → PASSED (depcruise detected violation)
-docker compose config → valid (postgres:16, minio, mailpit, api/web profiles)
+bash scripts/check-boundaries.sh → PASSED (depcruise 0 violations, fixture 1 error correctly detected)
+# DB CI (CI-only with live PG): pnpm db:migrate (fresh+regression) + check-rls + check-catalog + RLS A1/A3/guard probes — see .github/workflows/ci-db.yml
 ```
+
+## Evidence for PHASE-002 (2026-10-28)
+
+- Migrations `apps/api/migrations/0001_core_infra.sql` (roles, GUC, tenants minimal, audit_events RLS+guard, file_objects, _infra_probe FK) + `0002_boss_and_rls_macro.sql` (boss schema, apply_tenant_policy macro)
+- Infra `apps/api/src/infra/db` (Pool 20, AsyncLocalStorage, withTenant SET LOCAL, migrate.ts), `infra/jobs` pg-boss, `modules/files` S3 adapter (tenant prefix), observability (pino+request-id+OTel no-op), `/health/ready`
+- Tests 47 new api tests (see PHASE-002 report) + CI db job with RLS A1–A3/guard proofs
+- Docs: ENTITY_CATALOG, TABLES/tenancy-identity, ERD/tenancy-identity, DEVELOPMENT_SETUP synced; validation PASSED
+- Completion report: `docs/implementation/phases/reports/PHASE-002-COMPLETION.md`
 
 ## Known open items
 
