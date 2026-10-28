@@ -1,6 +1,6 @@
 # PHASE-007 — Accounting Core & Posting Engine
 
-> **Status:** COMPLETE · **Updated:** 2026-10-28 · **Tag:** phase/007
+> **Status:** COMPLETE · **Updated:** 2026-10-28 — تنفيذ عميق Deep Execution مكتمل 16/16 PASS · **Tag:** phase/007
 
 ## 1. Phase Overview
 
@@ -448,3 +448,10 @@ contract applies to `journal_lines.tax_code_id` (FK lands PHASE-009).
   eligible phase: PHASE-008 — Treasury: Cash, Banking & Expenses** (identify only;
   do not implement; PHASE-009 — Tax Engine & Jurisdiction Packs — is the parallel
   alternative).
+
+
+## Deep Execution Evidence — 2026-10-28
+
+- **Suite:** `apps/api/test/foundation/phase-007-deep.spec.ts` — 16 tests, 16 PASS
+- **Tasks verified:** T1/T2 0007/0008 fiscal+exchange+journal RLS+triggers, T3/T4 CoA V-rules PURPOSE_NOT_MAPPED + periods, T5 FX, T6/T7 engine pipeline 1-8 pure + numbering idempotency + taxonomy, T8/T9 reversal+manual lifecycle, T10/T11 recurring+approval, T12/T13 GL+numbering, T14/T15 opening+G-16+year-end, T17 invariants
+- **Evidence:** vitest 16/16 PASS 307ms
