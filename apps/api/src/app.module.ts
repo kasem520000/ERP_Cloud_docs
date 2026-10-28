@@ -10,9 +10,10 @@ import { PartnersModule } from './modules/partners/partners.module.js';
 import { ItemsModule } from './modules/items/items.module.js';
 import { AccountingModule } from './modules/accounting/accounting.module.js';
 import { TreasuryModule } from './modules/treasury/treasury.module.js';
+import { TaxModule } from './modules/tax/tax.module.js';
 
 @Module({
-  imports: [HealthModule, AuditModule, FilesModule, JobsModule, TenancyModule, IdentityModule, PartnersModule, ItemsModule, AccountingModule, TreasuryModule],
+  imports: [HealthModule, AuditModule, FilesModule, JobsModule, TenancyModule, IdentityModule, PartnersModule, ItemsModule, AccountingModule, TreasuryModule, TaxModule],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer): void {

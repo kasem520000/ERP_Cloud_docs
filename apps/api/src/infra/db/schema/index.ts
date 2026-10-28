@@ -17,3 +17,4 @@ export * from './exchange-rates.js';
 export * from './journal.js';
 export * from './accounting-aux.js';
 export * from './treasury.js';
+export * from './tax.js';

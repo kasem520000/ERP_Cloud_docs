@@ -68,3 +68,47 @@ opening_float, expected_amount, counted_amount, variance, status OPEN|CLOSED, va
 ## `bank_statements` / `bank_statement_lines` — BR-022 (PHASE-008)
 
 Statements: cash_account_id, period_start/end, file_hash UNIQUE per tenant (idempotent), status IMPORTED|MATCHED|RECONCILED. Lines: statement_id, value_date, amount, reference, matched_movement_id, matched_at. Auto-match amount+window 3d+reference, unmatched aging, period lock RECONCILED.
+
+## `tax_treatments` — global (PHASE-009)
+
+| Column | Type | Null | Default | Constraints | Description |
+|--------|------|------|---------|-------------|-------------|
+| `key` | text | no | — | PK | STANDARD_RATED etc (6) |
+
+## `jurisdictions` — global packs (PHASE-009)
+
+| Column | Type | Null | Default | Constraints | Description |
+|--------|------|------|---------|-------------|-------------|
+| `country_code` | char(2) | no | — | PK | SA/AE/BH/KW/OM/QA/YE/EG/JO/IQ |
+| `vat_status` | text | no | — | ck VAT_IN_FORCE/VAT_PLANNED/NO_VAT | |
+| `pack_version` | text | no | `1.0.0` | — | |
+
+## `jurisdiction_tax_rates` — versioned (PHASE-009)
+
+| Column | Type | Null | Default | Constraints | Description |
+|--------|------|------|---------|-------------|-------------|
+| `id` | uuid | no | — | PK | |
+| `country_code` | char(2) | no | — | FK jurisdictions, idx country+treatment+from | |
+| `treatment` | text | no | — | FK tax_treatments | |
+| `rate` | numeric(7,4) | no | — | CHECK 0..1 | |
+| `effective_from/to` | date | no/yes | — | — | history windows |
+| `source_ref` | text | no | — | — | official source |
+| `verified_at` | timestamptz | yes | NULL | — | REQUIRES_VERIFICATION |
+
+## `tax_codes` — tenant (PHASE-009)
+
+| Column | Type | Null | Default | Constraints | Description |
+|--------|------|------|---------|-------------|-------------|
+| `id`, `tenant_id` **+standard** | — | — | — | `UNIQUE(id,tenant_id)` `UNIQUE(tenant_id,code)` | |
+| `code` | text | no | — | tenant-unique | |
+| `jurisdiction_code` | char(2) | no | — | FK jurisdictions | |
+| `treatment` | text | no | — | FK tax_treatments | |
+| `rate` | numeric(7,4) | no | — | — | snapshot rate |
+
+## `tax_registrations` — tenant (PHASE-009)
+
+Per-jurisdiction REGISTERED/NOT_REGISTERED/DEREGISTERED, migrated from PHASE-004 settings.
+
+## `e_invoicing_submissions` — schema only (PHASE-009, impl 023)
+
+doc_type, doc_id, adapter_id, status PENDING→ACCEPTED/REJECTED, payload/response files.
