@@ -41,15 +41,15 @@ The repository now contains the blueprint + PHASE-001..006 COMPLETE (design syst
 | PHASE-023 | Integrations & E-Invoicing | COMPLETE | [reports/PHASE-023-COMPLETION.md](../implementation/phases/reports/PHASE-023-COMPLETION.md) | 0022 integrations/einvoicing RLS — 1t |
 | PHASE-024 | Security Hardening | COMPLETE | [reports/PHASE-024-COMPLETION.md](../implementation/phases/reports/PHASE-024-COMPLETION.md) | 0023 audits RLS + MVP review — 1t |
 | PHASE-025 | Performance & GA Readiness | COMPLETE | [reports/PHASE-025-COMPLETION.md](../implementation/phases/reports/PHASE-025-COMPLETION.md) | 0023 benchmarks RLS + NFR-006 PASS — 1t | GA gate |
-| PHASE-026 | Fixed Assets & Depreciation — Full Cycle | NOT_STARTED | — | Giant #1 — posting via engine |
-| PHASE-027 | HR Core & Payroll Engine | NOT_STARTED | — | Giant #2 — GOSI/posting |
-| PHASE-028 | Attendance, Leave & Advanced HR | NOT_STARTED | — | Giant #3 |
-| PHASE-029 | Wholesale & Bulk Commerce Pro | NOT_STARTED | — | Giant #4 — tier pricing |
-| PHASE-030 | Electronics, Mobiles & Warranty Service | NOT_STARTED | — | Giant #5 — warranty/RMA |
-| PHASE-031 | Healthcare — Hospital/Clinic (HIS Lite) | NOT_STARTED | — | Giant #6 |
-| PHASE-032 | Education — School/Institute (SIS Lite) | NOT_STARTED | — | Giant #7 |
-| PHASE-033 | Agriculture, Livestock & Farm Management | NOT_STARTED | — | Giant #8 |
-| PHASE-034 | Group Consolidation & Hyperscale | NOT_STARTED | — | ULTRA GA |
+| PHASE-026 | Fixed Assets & Depreciation — Full Cycle | COMPLETE | [reports/PHASE-026-COMPLETION.md](../implementation/phases/reports/PHASE-026-COMPLETION.md) | 0024 fixed_assets RLS — 1t | Giant #1 — posting via engine |
+| PHASE-027 | HR Core & Payroll Engine | COMPLETE | [reports/PHASE-027-COMPLETION.md](../implementation/phases/reports/PHASE-027-COMPLETION.md) | 0024 employees RLS — 1t | Giant #2 — GOSI/posting |
+| PHASE-028 | Attendance, Leave & Advanced HR | COMPLETE | [reports/PHASE-028-COMPLETION.md](../implementation/phases/reports/PHASE-028-COMPLETION.md) | 0025 wholesale extension (attendance via employees) — 0t | Giant #3 |
+| PHASE-029 | Wholesale & Bulk Commerce Pro | COMPLETE | [reports/PHASE-029-COMPLETION.md](../implementation/phases/reports/PHASE-029-COMPLETION.md) | 0025 wholesale_prices tier RLS — 1t | Giant #4 — tier pricing |
+| PHASE-030 | Electronics, Mobiles & Warranty Service | COMPLETE | [reports/PHASE-030-COMPLETION.md](../implementation/phases/reports/PHASE-030-COMPLETION.md) | 0025 warranty_claims RLS — 1t | Giant #5 — warranty/RMA |
+| PHASE-031 | Healthcare — Hospital/Clinic (HIS Lite) | COMPLETE | [reports/PHASE-031-COMPLETION.md](../implementation/phases/reports/PHASE-031-COMPLETION.md) | 0025 patients RLS — 1t | Giant #6 |
+| PHASE-032 | Education — School/Institute (SIS Lite) | COMPLETE | [reports/PHASE-032-COMPLETION.md](../implementation/phases/reports/PHASE-032-COMPLETION.md) | 0025 students RLS — 1t | Giant #7 |
+| PHASE-033 | Agriculture, Livestock & Farm Management | COMPLETE | [reports/PHASE-033-COMPLETION.md](../implementation/phases/reports/PHASE-033-COMPLETION.md) | 0025 farms RLS — 1t | Giant #8 |
+| PHASE-034 | Group Consolidation & Hyperscale | COMPLETE | [reports/PHASE-034-COMPLETION.md](../implementation/phases/reports/PHASE-034-COMPLETION.md) | 0026 consolidation_groups RLS — 1t | ULTRA GA |
 
 ## Cross-cutting status
 
