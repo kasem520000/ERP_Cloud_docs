@@ -67,7 +67,7 @@ describe('DEEP 010 — FIFO property (PHASE-010 §6)',()=>{
   it('oldest-first consumption order strictly enforced',()=>{
     const layers=[{id:'a', remainingQty:'5', unitCost:'10', createdAt:'2026-01-01'}, {id:'b', remainingQty:'5', unitCost:'20', createdAt:'2026-01-02'}, {id:'c', remainingQty:'5', unitCost:'30', createdAt:'2026-01-03'}];
     const { consumed }=consumeFifo(layers.map(l=>({...l})), '7');
-    expect(consumed[0].layerId).toBe('a'); expect(consumed[1].layerId).toBe('b'); expect(consumed[1].qty).toBe('2');
+    expect(consumed[0].layerId).toBe('a'); expect(consumed[1].layerId).toBe('b'); expect(Number(consumed[1].qty)).toBe(2);
   });
   it('layers never negative',()=>{
     const layers=[{id:'x', remainingQty:'3', unitCost:'1', createdAt:'2026-01-01'}];

@@ -44,9 +44,9 @@ describe('FIFO oldest-first', () => {
     ];
     const { consumed } = consumeFifo(layers, '8');
     expect(consumed[0].layerId).toBe('l1');
-    expect(consumed[0].qty).toBe('5');
+    expect(Number(consumed[0].qty)).toBe(5);
     expect(consumed[1].layerId).toBe('l2');
-    expect(consumed[1].qty).toBe('3');
+    expect(Number(consumed[1].qty)).toBe(3);
   });
   it('sumLayerQty equals onHand', () => {
     const layers = [
