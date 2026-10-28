@@ -48,6 +48,10 @@ Legend: **Phase** = first implementation phase · **OC** = offline-creatable
 | `cost_centers` | Analytical dimension | tenant_id, code, name, name_ar, parent_id | 007 (basic) | no |
 | `recurring_journals` | Recurrence definitions | tenant_id, template jsonb, schedule, next_run_date, status | 007 | no |
 | `approval_policies` | Doc-type approval rules | tenant_id, doc_type, policy jsonb (thresholds, approvers) | 007 | no |
+| `approval_queue` | Approval inbox | tenant_id, doc_type, doc_id, amount, requester_id, required_approvers, status | 007 | no |
+| `numbering_sequences` | Per-tenant/branch sequences | tenant_id, branch_id, doc_type, prefix, next_seq, format_template | 007 | no |
+| `reconciliation_runs` | Nightly checks | tenant_id, check_key, status (PASSED/BROKEN), details, run_at | 007 | no |
+| `opening_balance_docs` | Opening posting proof | tenant_id, partner_id, amount, batch_id | 006 draft → 007 posted | no |
 
 ## partners & items (PHASE-006)
 

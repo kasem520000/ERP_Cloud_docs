@@ -22,7 +22,7 @@ The repository now contains the blueprint + PHASE-001..006 COMPLETE (design syst
 | PHASE-004 | Tenant Provisioning & Platform Admin | COMPLETE | [reports/PHASE-004-COMPLETION.md](../implementation/phases/reports/PHASE-004-COMPLETION.md) | `0004_tenancy_provisioning.sql` + `0005_accounts_schema.sql` + tenancy module (registration/onboarding/branches/entitlements/settings/lifecycle/support) + PlatformScope console + 87 tests |
 | PHASE-005 | Design System, i18n & RTL Foundation | COMPLETE | [reports/PHASE-005-COMPLETION.md](../implementation/phases/reports/PHASE-005-COMPLETION.md) | `@erp/ui` v1.0.0 · tokens+30 components+shell+i18n/RTL+visual+a11y+CSP — tag `phase/005` |
 | PHASE-006 | Master Data | COMPLETE | [reports/PHASE-006-COMPLETION.md](../implementation/phases/reports/PHASE-006-COMPLETION.md) | `0006_partners_items.sql` + 13 tables RLS + partners/items/UoM/pricing/credit/opening/import + 135 tests + zero-posting proof — tag `phase/006` |
-| PHASE-007 | Accounting Core & Posting Engine | NOT_STARTED | — | |
+| PHASE-007 | Accounting Core & Posting Engine | COMPLETE | [reports/PHASE-007-COMPLETION.md](../implementation/phases/reports/PHASE-007-COMPLETION.md) | `0007_accounting_core.sql` + `0008_journal_tables.sql` + posting engine (INV-001..009/011/013-015/020-022, G-16/19/20) + approval/recurring/GL/numbering + 197 tests — tag `phase/007` |
 | PHASE-008 | Treasury & Expenses | NOT_STARTED | — | |
 | PHASE-009 | Tax Engine & Jurisdiction Packs | NOT_STARTED | — | |
 | PHASE-010 | Inventory & Warehousing | NOT_STARTED | — | |
