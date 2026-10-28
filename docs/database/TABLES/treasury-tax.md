@@ -167,3 +167,38 @@ Head: warehouse, is_blind, snapshot_at. Lines: system_qty frozen, counted_qty, v
 | `status` | text | no | ACTIVE | ACTIVE/EXPIRED/RELEASED |
 
 Availability = onHand − reserved ACTIVE − inTransit; reorder job emits stock.below_reorder.
+
+# purchasing update — PHASE-011 tables appended in same file (consolidated)
+# Note: see section above for core inventory; purchasing below.
+
+## `purchase_requests` / `purchase_request_lines` (PHASE-011)
+
+Requisition header: tenant_id, branch_id, requested_by, pr_no, status DRAFT→PENDING_APPROVAL→APPROVED→REJECTED→CANCELLED; lines item_id qty.
+
+## `purchase_orders` / `purchase_order_lines` (PHASE-011)
+
+PO header: supplier_id, branch_id, order_no (BR-029 numbering INV-021), order_date, expected_date, status DRAFT→ISSUED→CLOSED, revision_of, totals, tax_summary, currency. Lines item qty unit_price amount + tax snapshot. Threshold BR-010 via tenant_settings.
+
+## `goods_receipts` / `goods_receipt_lines` (PHASE-011)
+
+GRN: po_id (nullable PO-less BR-012), warehouse_id, receipt_no, receipt_date, status DRAFT→POSTED→REVERSED, posted_journal_id. Lines item qty unit_cost amount batch_id expiry. Posts via inventory.receiveStock + G-07 DR INVENTORY CR GRNI.
+
+## `supplier_invoices` / `supplier_invoice_lines` (PHASE-011)
+
+Supplier invoice: supplier_id, invoice_no (supplier's), internal_no, po_id, grn_id, match_result jsonb (BR-009), status DRAFT→POSTED, invoice_date due_date, subtotal tax total, tax_summary INV-012, currency. Lines item qty unit_price amount tax_snapshot recovery RECOVERABLE/EXPENSED/NOT_SUBJECT. BR-011 duplicate (supplier,number,amount) blocked.
+
+## `debit_notes` (PHASE-011)
+
+AP correction referencing supplier_invoice, G-09 DR AP_CONTROL CR INVENTORY CR VAT_RECOVERABLE.
+
+## `landed_costs` (PHASE-011 baseline)
+
+grn_id, cost_type freight/customs/insurance/other, amount, allocation_method value/quantity, status DRAFT→POSTED, remaining-qty constraint + COGS-adjustment per INVENTORY_ACCOUNTING §3.
+
+## `ap_allocations` / `payments` extension (PHASE-011)
+
+ap_allocations payment_id→invoice_id amount INV-016 bounded; payments via treasury service G-10 DR AP_CONTROL CR CASH + FX. On-account remainder + reallocation audited.
+
+## `accounts` purposes for purchasing
+
+GRNI, AP_CONTROL, VAT_RECOVERABLE, VAT_EXPENSED, INVENTORY, CASH, FX_GAIN/LOSS.

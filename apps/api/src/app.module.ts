@@ -12,9 +12,10 @@ import { AccountingModule } from './modules/accounting/accounting.module.js';
 import { TreasuryModule } from './modules/treasury/treasury.module.js';
 import { TaxModule } from './modules/tax/tax.module.js';
 import { InventoryModule } from './modules/inventory/inventory.module.js';
+import { PurchasingModule } from './modules/purchasing/purchasing.module.js';
 
 @Module({
-  imports: [HealthModule, AuditModule, FilesModule, JobsModule, TenancyModule, IdentityModule, PartnersModule, ItemsModule, AccountingModule, TreasuryModule, TaxModule, InventoryModule],
+  imports: [HealthModule, AuditModule, FilesModule, JobsModule, TenancyModule, IdentityModule, PartnersModule, ItemsModule, AccountingModule, TreasuryModule, TaxModule, InventoryModule, PurchasingModule],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer): void {
