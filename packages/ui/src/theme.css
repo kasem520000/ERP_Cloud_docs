@@ -1,0 +1,9 @@
+@import "./tokens/tokens.css";
+@import "./tokens/density.css";
+/* Tailwind v4 theme bridge */
+@layer base {
+  * { font-variant-numeric: tabular-nums; }
+  :focus-visible { outline: var(--erp-focus-ring-width) solid var(--erp-focus-ring-color); outline-offset: var(--erp-focus-ring-offset); }
+  html[dir="rtl"] { font-family: var(--erp-font-ar); }
+  html[dir="ltr"] { font-family: var(--erp-font-latin); }
+}

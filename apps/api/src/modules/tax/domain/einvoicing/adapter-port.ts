@@ -1,0 +1,3 @@
+export interface EInvoicingAdapter { id: string; generate(docId:string): Promise<{payload:string}>; submit(payload:string): Promise<{status:'ACCEPTED'|'REJECTED'}>; }
+export class FakeAdapter implements EInvoicingAdapter { id='fake'; generate(docId:string): Promise<{payload:string}>{ return Promise.resolve({payload:`{"doc":"${docId}"}`}); } submit(payload:string): Promise<{status:'ACCEPTED'|'REJECTED'}>{ if(payload.includes('UNVERIFIED')) return Promise.reject(Object.assign(new Error('REQUIRES_VERIFICATION: refusing submission'),{status:403})); return Promise.resolve({status:'ACCEPTED' as const}); } }
+export type SubmissionStatus='PENDING'|'GENERATED'|'SUBMITTED'|'ACCEPTED'|'REJECTED';

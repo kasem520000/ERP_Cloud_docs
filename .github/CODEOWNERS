@@ -1,0 +1,7 @@
+# CODEOWNERS — PHASE-001 stub (expanded per module in later phases)
+* @kasem520000/erp-platform-owners
+/apps/api/ @kasem520000/erp-platform-owners
+/packages/domain-core/ @kasem520000/erp-platform-owners
+/docs/database/ @kasem520000/erp-platform-owners
+/docs/accounting/ @kasem520000/erp-platform-owners
+/.github/ @kasem520000/erp-platform-owners

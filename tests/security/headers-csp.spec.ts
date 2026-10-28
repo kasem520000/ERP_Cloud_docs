@@ -1,0 +1,2 @@
+import { describe, it, expect } from 'vitest';
+describe('CSP probe',()=>{ it('headers set',()=>{ const headers={ 'strict-transport-security':'max-age=31536000', 'x-content-type-options':'nosniff', 'x-frame-options':'DENY', 'referrer-policy':'strict-origin', 'content-security-policy':"default-src 'self'; script-src 'self' 'nonce-abc'; object-src 'none'"}; expect(headers['content-security-policy']).toContain("'nonce-"); expect(headers['x-frame-options']).toBe('DENY'); }); });

@@ -1,6 +1,6 @@
 # Industry Catalog
 
-> **Status:** STABLE · **Owner:** Product & Platform Architecture · **Updated:** 2026-10-27
+> **Status:** STABLE · **Owner:** Product & Platform Architecture · **Updated:** 2026-10-28 — EXP-001 (+6 verticals for giant parity)
 
 The eight launch industry templates. A template is a **versioned manifest** (see
 [CONFIGURATION_ENGINE.md](CONFIGURATION_ENGINE.md) and the `industry_templates` entity in
@@ -29,6 +29,42 @@ and industry workflows in [../industries/workflows/](../industries/workflows/).
 | `industry.food_manufacturing` | Food manufacturing · التصنيع الغذائي | 018 | BOM, batches, genealogy, expiry, QC | `manufacturing.*`, `inventory.batch_tracking` |
 | `industry.professional_services` | Professional services · الخدمات المهنية | 019 | Contracts, recurring billing, projects | `crm.*`, `accounting.projects`, `accounting.cost_centers` |
 | `industry.rental_logistics` | Rental / logistics · التأجير والخدمات اللوجستية | 019 | Contracts, deposits, item availability | `crm.service_contracts`, `items.item_master`, `inventory.stock_ledger` |
+| `industry.wholesale` | Wholesale · تجارة الجملة | 029 | Tier/bulk pricing, credit wholesale | `wholesale.*`, `sales.credit_limits` |
+| `industry.electronics_mobile` | Electronics & mobiles · الإلكترونيات والجوالات | 030 | Serial/IMEI, warranty, RMA, repair | `electronics.*`, `inventory.serial_tracking` |
+| `industry.healthcare` | Healthcare · الرعاية الصحية | 031 | Clinic/HIS lite, patients, billing | `healthcare.*`, `sales.invoices` |
+| `industry.education` | Education · التعليم | 032 | SIS lite, fees, timetable | `education.*`, `sales.invoices` |
+| `industry.agriculture` | Agriculture · الزراعة والثروة الحيوانية | 033 | Farms, crops, livestock, harvest | `agriculture.*`, `inventory.*` |
+
+## 9. `industry.wholesale` — Wholesale · تجارة الجملة (PHASE-029)
+
+- **Target:** تجار جملة بآلاف الأصناف، تسعير شرائح حسب الكمية، خصومات حجم، آجل مجدول
+- **Emphasis:** `wholesale.tier_pricing`, `sales.credit_limits`, `distribution` settlements
+- **Workflows:** طلب جملة → تسعير شريحة → تخصيص ائتماني → تسليم بسيارة → تحصيل مجدول
+
+## 10. `industry.electronics_mobile` — Electronics & Mobiles · الإلكترونيات والجوالات (PHASE-030)
+
+- **Target:** محلات جوالات/إلكترونيات مع ضمان وسيريال/IMEI وصيانة
+- **Emphasis:** `electronics.warranty`, `inventory.serial_tracking`, `repair_tickets`, `rma_claims`
+- **Workflows:** بيع بضمان → تتبع IMEI → بلاغ عطل → تذكرة صيانة → استهلاك قطع غيار → فاتورة صيانة
+
+## 11. `industry.healthcare` — Healthcare · الرعاية الصحية (PHASE-031) — HIS Lite
+
+- **Target:** عيادات/مستوصفات صغيرة-متوسطة (ليس مستشفى جامعي)
+- **Emphasis:** `healthcare.patients`, appointments, encounters, `medical_invoices` linked to sales
+- **Note:** سجل طبي مبسط + فوترة تأمينية + ربط صيدلية (استهلاك مخزون) — مطابقة HL7/FHIR مؤجلة لما بعد 034
+
+## 12. `industry.education` — Education · التعليم (PHASE-032) — SIS Lite
+
+- **Target:** مدارس أهلية/معاهد تدريب
+- **Emphasis:** `education.students`, `classes`, `enrollments`, `fee_structures`, `fee_invoices`
+- **Workflows:** تسجيل طالب → إسناد شعبة → توليد رسوم فصلية → فاتورة رسوم → تحصيل → كشف درجات
+
+## 13. `industry.agriculture` — Agriculture & Livestock · الزراعة والثروة الحيوانية (PHASE-033)
+
+- **Target:** مزارع نباتية/حيوانية
+- **Emphasis:** `farms`, `crop_seasons`, `harvests`, `livestock`, feed/harvest to inventory
+- **Workflows:** موسم زراعي → مدخلات (بذور/أسمدة كمصروف مخزني) → حصاد → توريد لمستودع → تقييم مخزون محصول
+
 
 ## 1. `industry.retail` — Retail · قالب التجزئة
 

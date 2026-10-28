@@ -23,7 +23,7 @@ The close workspace renders the checklist from live checks:
    automated reconciliation jobs green ([RECONCILIATION.md](RECONCILIATION.md)).
 2. Unposted drafts in the period: listed, acknowledged (blocked from posting after lock
    anyway; the checklist surfaces them for explicit disposition).
-3. Bank reconciliations completed for all bank/cash accounts.
+3. Bank reconciliations completed for all bank/cash accounts — **live from PHASE-008** ([RECONCILIATION.md](RECONCILIATION.md) §4, bank-rec per-account period lock).
 4. Recurring journals generated (or explicitly skipped with reason).
 5. FX revaluation run or explicitly waived (multi-currency tenants).
 6. Stock counts pending variance review: zero (or waived with reason).

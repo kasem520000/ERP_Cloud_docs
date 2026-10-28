@@ -1,0 +1,11 @@
+# Commit message convention (PHASE-001 T9)
+# Format: PHASE-001: <scope> — <change>  OR  docs: <change>  OR  chore: <change>
+# Examples:
+#   PHASE-001: domain-core — add Money rounding tests
+#   docs: fix broken link in ARCHITECTURE_BASELINE
+#   chore: bump pnpm to 9.15.9
+#
+# Rules:
+# - One phase per commit (never mix PHASE-002 into PHASE-001 commit)
+# - Append CHANGELOG.md entry for user-visible changes
+# - No secrets, no .env, no business logic beyond phase scope

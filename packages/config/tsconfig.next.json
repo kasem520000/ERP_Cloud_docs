@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "preserve",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
+    "paths": {
+      "@/*": ["./src/*"],
+      "@erp/domain-core": ["../../packages/domain-core/src"],
+      "@erp/contracts": ["../../packages/contracts/src"],
+      "@erp/ui": ["../../packages/ui/src"]
+    }
+  },
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "src/**/*"],
+  "exclude": ["node_modules"]
+}

@@ -1,6 +1,6 @@
 # Entity Catalog
 
-> **Status:** STABLE · **Owner:** Database Architecture · **Updated:** 2026-10-27
+> **Status:** STABLE · **Owner:** Database Architecture · **Updated:** 2026-10-28 — EXP-001 (+26 tables for giant parity, total ~110)
 
 All planned entities grouped by owning module, with the phase that introduces them and
 key relationships. This is the catalog-level map; column-level specifications for core
@@ -16,7 +16,7 @@ Legend: **Phase** = first implementation phase · **OC** = offline-creatable
 
 | Entity | Purpose | Key fields / relationships | Phase | OC |
 |--------|---------|---------------------------|-------|----|
-| `tenants` | Customer organizations | name, name_ar, status, base_currency, country_code, timezone, industry_template_id, deleted_at | 003 | no |
+| `tenants` | Customer organizations | id, name, status (minimal stub — full profile 003) | 002 (minimal) → 003 (full) | no |
 | `branches` | Operating units | tenant_id, code, name, name_ar, address, is_active | 004 | no |
 | `users` | Global identity (email/phone unique) | email, phone, password_hash, status, locale, mfa fields | 003 | no |
 | `memberships` | User↔tenant role link | user_id, tenant_id, role_id, branch_scope[], status | 003 | no |
@@ -31,7 +31,7 @@ Legend: **Phase** = first implementation phase · **OC** = offline-creatable
 | `subscriptions` | Tenant plan assignment | tenant_id, plan_id, status, period, provider_ref | 014 | no |
 | `entitlements` | Effective feature grants (materialized) | tenant_id, feature_key, source, expires_at | 004 | no |
 | `tenant_settings` | Key-value config (typed) | tenant_id, key, value jsonb | 004 | no |
-| `audit_events` 🔒 | Immutable audit trail | tenant_id, actor_id, action, entity_type, entity_id, before jsonb, after jsonb, correlation_id, device_id, at | 003 | no |
+| `audit_events` 🔒 | Immutable audit trail | tenant_id, actor_id, action, entity_type, entity_id, before/after jsonb, correlation_id (append-only, RLS) | 002 (infra) → 003 (exposure) | no |
 
 ## accounting (PHASE-007)
 
@@ -48,6 +48,10 @@ Legend: **Phase** = first implementation phase · **OC** = offline-creatable
 | `cost_centers` | Analytical dimension | tenant_id, code, name, name_ar, parent_id | 007 (basic) | no |
 | `recurring_journals` | Recurrence definitions | tenant_id, template jsonb, schedule, next_run_date, status | 007 | no |
 | `approval_policies` | Doc-type approval rules | tenant_id, doc_type, policy jsonb (thresholds, approvers) | 007 | no |
+| `approval_queue` | Approval inbox | tenant_id, doc_type, doc_id, amount, requester_id, required_approvers, status | 007 | no |
+| `numbering_sequences` | Per-tenant/branch sequences | tenant_id, branch_id, doc_type, prefix, next_seq, format_template | 007 | no |
+| `reconciliation_runs` | Nightly checks | tenant_id, check_key, status (PASSED/BROKEN), details, run_at | 007 | no |
+| `opening_balance_docs` | Opening posting proof | tenant_id, partner_id, amount, batch_id | 006 draft → 007 posted | no |
 
 ## partners & items (PHASE-006)
 
@@ -155,7 +159,77 @@ Legend: **Phase** = first implementation phase · **OC** = offline-creatable
 | `tenant_industry_config` | Applied template state | tenant_id, template_key, applied_manifest_hash, applied_at, overrides jsonb | 015 | no |
 | `feature_flags` | Rollout flags | key, scope, enabled, rules jsonb | 015 | no |
 
+## fixed assets (PHASE-026)
+
+| Entity | Purpose | Key fields | Phase | OC |
+|--------|---------|-----------|-------|----|
+| `fixed_assets` | Asset register | tenant_id, asset_no, category_id, name, name_ar, serial_no, acquisition_date, acquisition_cost, useful_life_months, depreciation_method (straight_line/declining/units), salvage_value, location, custodian_id, status (active/disposed/sold) | 026 | no |
+| `asset_categories` | Asset taxonomy | tenant_id, code, name, name_ar, parent_id, default_useful_life, default_method, account_depreciation_id, account_accum_id | 026 | no |
+| `asset_depreciation_schedules` | Planned depreciation | asset_id, period_no, period_date, amount, posted_journal_id | 026 | no |
+| `asset_movements` | Transfers/disposals/revaluations | asset_id, type (transfer/disposal/revaluation), from_cost_center, to_cost_center, amount, journal_id | 026 | no |
+
+## workforce — HR & payroll (PHASE-027/028)
+
+| Entity | Purpose | Key fields | Phase | OC |
+|--------|---------|-----------|-------|----|
+| `employees` | Workforce master | tenant_id, code, name, name_ar, national_id, phone, email, hire_date, department_id, grade_id, bank_account, status | 027 | no |
+| `departments` | Org units | tenant_id, code, name, name_ar, parent_id | 027 | no |
+| `payroll_elements` | Earnings/deductions | tenant_id, code, name, name_ar, kind (earning/deduction), taxable, gosi_applicable | 027 | no |
+| `payroll_runs` | Payroll periods | tenant_id, period_month, status (draft/approved/posted), total_gross, total_deductions, total_net, journal_id | 027 | no |
+| `payroll_lines` | Per-employee breakdown | payroll_run_id, employee_id, element_id, amount, base_amount | 027 | no |
+| `attendance_records` | Daily attendance | tenant_id, employee_id, date, check_in, check_out, status | 028 | no |
+| `leave_requests` | Leave workflow | tenant_id, employee_id, type (annual/sick/etc), from_date, to_date, days, status | 028 | no |
+| `gratuity_accruals` | EOS provision | tenant_id, employee_id, as_of, accrued_amount, journal_id | 028 | no |
+
+## wholesale & electronics (PHASE-029/030)
+
+| Entity | Purpose | Key fields | Phase | OC |
+|--------|---------|-----------|-------|----|
+| `wholesale_tiers` | Volume/price tiers | tenant_id, partner_id or tier_code, item_id, min_qty, unit_price, discount_percent | 029 | no |
+| `warranty_contracts` | Device warranties | tenant_id, serial_id, customer_id, start_date, end_date, terms, status | 030 | no |
+| `repair_tickets` | Service workshop | tenant_id, ticket_no, customer_id, item_id, serial_id, issue_desc, status (open/in_progress/closed), parts_used, labor_cost | 030 | no |
+| `rma_claims` | Returns to supplier | tenant_id, supplier_id, item_id, serial_id, reason, status | 030 | no |
+
+## healthcare — HIS lite (PHASE-031)
+
+| Entity | Purpose | Key fields | Phase | OC |
+|--------|---------|-----------|-------|----|
+| `patients` | Patient registry | tenant_id, code, name, name_ar, national_id, dob, gender, phone, insurance_no | 031 | no |
+| `appointments` | Scheduling | tenant_id, patient_id, doctor_id (employee), clinic_room, appointment_time, status | 031 | no |
+| `encounters` | Visits/admissions | tenant_id, patient_id, appointment_id, type (visit/admission), diagnosis, billing_status | 031 | no |
+| `medical_invoices` | Healthcare billing | tenant_id, patient_id, encounter_id, invoice_id (FK sales_invoices), insurance_share | 031 | no |
+
+## education — SIS lite (PHASE-032)
+
+| Entity | Purpose | Key fields | Phase | OC |
+|--------|---------|-----------|-------|----|
+| `students` | Student registry | tenant_id, code, name, name_ar, dob, guardian_id, status | 032 | no |
+| `classes` | Academic classes | tenant_id, academic_year, code, name, name_ar, homeroom_teacher_id | 032 | no |
+| `enrollments` | Student-class link | student_id, class_id, academic_year, status | 032 | no |
+| `fee_structures` | Fee schedules | tenant_id, academic_year, class_id, fee_type, amount, due_date | 032 | no |
+| `fee_invoices` | Fee billing | tenant_id, student_id, fee_structure_id, invoice_id, amount, status | 032 | no |
+
+## agriculture & livestock (PHASE-033)
+
+| Entity | Purpose | Key fields | Phase | OC |
+|--------|---------|-----------|-------|----|
+| `farms` | Farm registry | tenant_id, code, name, location, area_hectares | 033 | no |
+| `crop_seasons` | Planting cycles | tenant_id, farm_id, crop_name, season_start, season_end, status | 033 | no |
+| `crop_inputs` | Inputs (seed/fertilizer) | crop_season_id, item_id, qty, cost | 033 | no |
+| `harvests` | Harvest yields | crop_season_id, harvest_date, qty, grade, warehouse_id | 033 | no |
+| `livestock` | Animal registry | tenant_id, tag_no, species, breed, birth_date, status | 033 | no |
+| `livestock_feedings` | Feed log | livestock_id, feed_item_id, qty, date | 033 | no |
+
+## group consolidation (PHASE-034)
+
+| Entity | Purpose | Key fields | Phase | OC |
+|--------|---------|-----------|-------|----|
+| `entity_groups` | Legal groups | tenant_group_id, name, name_ar, parent_group_id | 034 | no |
+| `intercompany_transactions` | IC docs | group_id, from_tenant_id, to_tenant_id, doc_type, amount, elimination_status | 034 | no |
+| `elimination_entries` | Consolidation journals | group_id, fiscal_period_id, journal_id, eliminated_entity_id | 034 | no |
+
 ## Diagrams
+
 
 ER diagrams per domain cluster: [ERD/](ERD/) — tenancy-identity, accounting-core,
 trade-inventory, treasury-tax. Generated/refreshed per phase (README sync rule).

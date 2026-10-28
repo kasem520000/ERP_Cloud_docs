@@ -1,0 +1,19 @@
+{
+  "components": [
+    "Button",
+    "Input",
+    "DataTable",
+    "MoneyInput",
+    "NavigationSidebar"
+  ],
+  "locales": [
+    "ar",
+    "en"
+  ],
+  "viewports": [
+    390,
+    1024,
+    1280
+  ],
+  "threshold": 0
+}

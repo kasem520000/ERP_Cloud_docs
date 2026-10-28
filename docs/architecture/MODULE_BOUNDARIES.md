@@ -1,6 +1,6 @@
 # Module Boundaries
 
-> **Status:** STABLE · **Owner:** Platform Architecture · **Updated:** 2026-10-27
+> **Status:** STABLE · **Owner:** Platform Architecture · **Updated:** 2026-10-28 — EXP-001 giant modules
 
 The authoritative module (bounded context) catalog. Modules live in `apps/api/src/modules/`
 as NestJS modules with a strict internal layout (`api/` = published surface,
@@ -31,6 +31,14 @@ as NestJS modules with a strict internal layout (`api/` = published surface,
 | `manufacturing` | BOM, production orders, WIP, QC, costing | bills_of_materials, production_orders, production_consumptions, inspections | production costing services | P-018 |
 | `distribution` | Routes, van stock, rep settlements | routes, route_visits, van_stock, rep_settlements | settlement services | P-017 |
 | `sync` | Device registry, change feeds, sync endpoints, cursors, tombstones, dedupe | sync_devices (mirror of identity devices' sync state), change_log, tombstones, sync_cursors, inbox_commands | pull/push contracts, device registration | P-016 (POS subset) / P-020 (full) |
+| `fixed_assets` | Fixed assets, depreciation, movements | fixed_assets, asset_categories, asset_depreciation_schedules, asset_movements | asset depreciation posting, register queries | P-026 |
+| `workforce` | Employees, payroll, attendance, leave, GOSI | employees, departments, payroll_elements, payroll_runs, payroll_lines, attendance_records, leave_requests, gratuity_accruals | payroll posting, attendance, payslip | P-027/028 |
+| `wholesale` | Tier/bulk pricing, promotions | wholesale_tiers | price resolution | P-029 |
+| `electronics` | Warranty, RMA, repair workshop | warranty_contracts, repair_tickets, rma_claims | warranty lookup, RMA | P-030 |
+| `healthcare` | Patients, appointments, billing | patients, appointments, encounters, medical_invoices | patient billing | P-031 |
+| `education` | Students, classes, fees | students, classes, enrollments, fee_structures, fee_invoices | fee invoicing | P-032 |
+| `agriculture` | Farms, crops, livestock, harvests | farms, crop_seasons, crop_inputs, harvests, livestock, livestock_feedings | harvest to inventory | P-033 |
+| `consolidation` | Group, intercompany, eliminations | entity_groups, intercompany_transactions, elimination_entries | group statements | P-034 |
 
 ## Cross-module write matrix (normative)
 

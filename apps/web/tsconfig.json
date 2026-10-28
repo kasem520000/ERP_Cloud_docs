@@ -1,0 +1,14 @@
+{
+  "extends": "../../packages/config/tsconfig.next.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@erp/domain-core": ["../../packages/domain-core/src"],
+      "@erp/contracts": ["../../packages/contracts/src"],
+      "@erp/ui": ["../../packages/ui/src"]
+    }
+  },
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "src/**/*"],
+  "exclude": ["node_modules"]
+}

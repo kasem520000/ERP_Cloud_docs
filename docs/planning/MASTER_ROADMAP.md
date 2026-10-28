@@ -1,8 +1,8 @@
 # Master Roadmap
 
-> **Status:** STABLE · **Owner:** Platform Architecture · **Updated:** 2026-10-27
+> **Status:** STABLE · **Owner:** Platform Architecture · **Updated:** 2026-10-28 — EXP-001 Giant Expansion to 34 phases
 
-The dependency-driven implementation roadmap: **25 phases in 8 stage groups**. Detailed,
+The dependency-driven implementation roadmap: **34 phases in 11 stage groups** (EXP-001 Giant Expansion 2026-10-28). Detailed,
 actionable phase documents (29 mandatory sections each) live in
 [../implementation/phases/](../implementation/phases/). Every phase's full acceptance
 criteria are consolidated in [PHASE_ACCEPTANCE_CRITERIA.md](PHASE_ACCEPTANCE_CRITERIA.md);
@@ -23,6 +23,9 @@ the index. If they conflict, the phase document wins and this file must be corre
 | 6 | Industry Expansion | 015–019 | Industry framework + priority templates, POS, automotive/distribution templates, manufacturing, CRM |
 | 7 | Offline & Multi-Platform | 020–022 | Sync foundation, desktop application, Android application |
 | 8 | Integrations & Enterprise Readiness — **GA** | 023–025 | E-invoicing implementations + external adapters, security hardening, performance & GA readiness |
+| 9 | Financial Depth & Workforce — **Giant Core** | 026–028 | Fixed assets/depreciation, HR/payroll/GOSI, budgeting/costing — full accounting cycle |
+| 10 | Universal Commerce & Specialized Verticals | 029–033 | Wholesale/bulk, electronics/mobiles/warranty, healthcare, education, agriculture/livestock |
+| 11 | Group & Hyperscale — **ULTRA GA** | 034 | Multi-entity consolidation, intercompany eliminations, group statements, hyperscale | E-invoicing implementations + external adapters, security hardening, performance & GA readiness |
 
 ## Dependency graph (summary)
 
@@ -67,6 +70,18 @@ flowchart TB
     P023 --> P024[P024 Security Hardening]
     P024 --> P025[P025 Performance & GA]
   end
+  subgraph S9["Stage 9 — Financial Depth"]
+    P026[P026 Fixed Assets] --> P027[P027 HR Core] --> P028[P028 HR Advanced]
+  end
+  subgraph S10["Stage 10 — Universal Commerce"]
+    P029[P029 Wholesale & Bulk] --> P030[P030 Electronics & Warranty]
+    P030 --> P031[P031 Healthcare]
+    P031 --> P032[P032 Education]
+    P032 --> P033[P033 Agriculture]
+  end
+  subgraph S11["Stage 11 — Ultra GA"]
+    P034[P034 Consolidation & Scale]
+  end
   P004 --> P005
   P005 --> P006
   P009 --> P010
@@ -75,10 +90,14 @@ flowchart TB
   P014 -.MVP gate.-> MVP[[MVP RELEASE]]
   P020 -.-> P016
   P025 -.-> GA[[GA RELEASE]]
+  P025 --> P026
+  P028 --> P029
+  P033 --> P034
+  P034 -.-> UGA[[ULTRA GA RELEASE]]
 ```
 
-Critical path: **P001 → P002 → P003 → P004 → P005 → P006 → P007 → {P008, P009} → P010 →
-P011 → P012 → P013 → P014 (MVP)**.
+Critical path MVP: **P001 → P002 → P003 → P004 → P005 → P006 → P007 → {P008, P009} → P010 → P011 → P012 → P013 → P014 (MVP)**.
+Full giant path: ... → P014 → P015 → P016 → P026 → P027 → P028 → P029 → P030 → P031 → P032 → P033 → P034 (ULTRA GA).
 
 ## Phase summary table
 
@@ -109,6 +128,15 @@ P011 → P012 → P013 → P014 (MVP)**.
 | [PHASE-023](../implementation/phases/PHASE-023.md) | External Integrations & E-Invoicing | 020 | ZATCA phase-2 adapter (verified specs), ETA evaluation, payment providers, e-commerce/shipping adapters |
 | [PHASE-024](../implementation/phases/PHASE-024.md) | Security Hardening & Compliance Review | 023 | Pen test fixes, MFA policies, rate-limit hardening, audit review, dependency triage |
 | [PHASE-025](../implementation/phases/PHASE-025.md) | Performance, Reliability & GA Readiness | 024 | Load tests, DR drill, restore tests, runbook validation, SLOs, GA release |
+| [PHASE-026](../implementation/phases/PHASE-026.md) | Fixed Assets & Depreciation — Full Cycle | 007,025 | Asset register, categories, depreciation (straight-line/declining/units), posting via engine, disposal/revaluation, physical count |
+| [PHASE-027](../implementation/phases/PHASE-027.md) | HR Core & Payroll Engine | 003,026 | Employees, contracts, departments, grades, payroll elements, payroll runs, posting, GOSI/social |
+| [PHASE-028](../implementation/phases/PHASE-028.md) | Attendance, Leave & Advanced HR | 027 | Shifts, attendance, leave, EOS/gratuity, loans/advances, compliance |
+| [PHASE-029](../implementation/phases/PHASE-029.md) | Wholesale & Bulk Commerce Pro | 006,012 | Tier pricing, bulk/multipack, promotions, credit wholesale workflows |
+| [PHASE-030](../implementation/phases/PHASE-030.md) | Electronics, Mobiles & Warranty Service | 006,010,012 | Serial/IMEI warranty, RMA, repair tickets, spare parts, service contracts |
+| [PHASE-031](../implementation/phases/PHASE-031.md) | Healthcare — Hospital/Clinic (HIS Lite) | 006,012 | Patients, appointments, encounters, billing, insurance, pharmacy linkage |
+| [PHASE-032](../implementation/phases/PHASE-032.md) | Education — School/Institute (SIS Lite) | 006,012 | Students, classes, enrollments, fees, timetable, results |
+| [PHASE-033](../implementation/phases/PHASE-033.md) | Agriculture, Livestock & Farm Management | 006,010 | Farms, crops, seasons, livestock, feed, harvest/yield, produce to inventory |
+| [PHASE-034](../implementation/phases/PHASE-034.md) | Group Consolidation & Hyperscale | 026–033 | Multi-entity group, intercompany, eliminations, group TB/BS/PL, hyperscale |
 
 ## Release gates
 
@@ -129,6 +157,13 @@ P011 → P012 → P013 → P014 (MVP)**.
   budget process live; ZATCA adapter (if in scope for KSA launch segment) certified per
   official requirements — or the launch segment explicitly excludes e-invoicing-requiring
   taxpayers (documented decision).
+
+### ULTRA GA gate (end of PHASE-034) — Giant Parity
+
+- Fixed assets register + depreciation posted and reconciled to GL (INV-010 extended); payroll posted per country and GOSI filed (where applicable); wholesale tier pricing and electronics warranty in production.
+- At least one live tenant per new vertical (healthcare, education, agriculture) operating billing/fees/harvest-to-inventory with zero cross-tenant leaks.
+- Group consolidation: 3-entity group with intercompany elimination producing balanced group statements.
+- All 34 phases green, 110+ tables, 300+ screens, 55+ reports; load at 20× MVP projection within NFR-006.
 
 ## Sequencing rationale (key decisions)
 
@@ -151,6 +186,10 @@ P011 → P012 → P013 → P014 (MVP)**.
 6. **E-invoicing implementation (P-023) last**: requires verified official
    specifications, credentials, and certification paths that must not be fabricated;
    the architecture (adapters) is ready from P-009, so implementation is isolated.
+7. **Fixed assets (P-026) after accounting core**: depreciation posts through the same posting engine (P-007); needs CoA purposes + fiscal periods.
+8. **HR/payroll (P-027/028) after fixed assets**: payroll posts journals; GOSI/eos rules are per-country verified specs like tax packs.
+9. **Wholesale/electronics (P-029/030) after trade ops**: they are pricing/warranty extensions on top of sales/inventory, not new ledgers.
+10. **Healthcare/education/agriculture (P-031–033) last verticals**: they reuse patients/students/farms as partner extensions + billing through sales; avoid domain creep before core is solid.
 
 ## Scope discipline rules
 

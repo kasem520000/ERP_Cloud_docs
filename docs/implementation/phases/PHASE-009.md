@@ -1,6 +1,6 @@
 # PHASE-009 — Tax Engine & Jurisdiction Packs
 
-> **Status:** PLANNED · **Updated:** 2026-10-27
+> **Status:** COMPLETE · **Updated:** 2026-10-28 · **Tag:** phase/009
 
 ## 1. Phase Overview
 

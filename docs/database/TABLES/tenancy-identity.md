@@ -1,6 +1,6 @@
 # TABLES — Tenancy & Identity Cluster
 
-> **Status:** STABLE · **Owner:** Database Architecture · **Updated:** 2026-10-27 · **Phases:** 002–004 (subscriptions 014, devices-sync 020)
+> **Status:** STABLE · **Owner:** Database Architecture · **Updated:** 2026-10-28 · **Phases:** 002–004 (subscriptions 014, devices-sync 020)
 
 Column-level specification for the tenancy & identity cluster, consistent with
 [ENTITY_CATALOG.md](../ENTITY_CATALOG.md), [DATABASE_CONVENTIONS.md](../DATABASE_CONVENTIONS.md),
@@ -15,7 +15,12 @@ and are **listed once here, not repeated per table** unless a table deviates. Ty
 [ADR-0009](../../architecture/ADR/ADR-0009-money-precision.md); enums per
 [DATA_DICTIONARY.md](../DATA_DICTIONARY.md) §9.
 
-## `tenants` — customer organizations (PHASE-003)
+## `tenants` — customer organizations (PHASE-002 minimal stub → PHASE-003 full)
+
+> **PHASE-002 substrate:** `apps/api/migrations/0001_core_infra.sql` creates the minimal `tenants(id uuid PK, name text NOT NULL, status text)` with platform-scope RLS. Full columns (`name_ar`, `base_currency`, `country_code`, `timezone`, `industry_template_key`, `deleted_at`) arrive in PHASE-003 per migration + DRIZZLE schema `apps/api/src/infra/db/schema/tenants.ts`.
+
+### Full shape (PHASE-003 target — authoritative)
+
 
 | Column | Type | Null | Default | Constraints | Description |
 |--------|------|------|---------|-------------|-------------|

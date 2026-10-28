@@ -1,0 +1,2 @@
+export function formatMoney(value: string, currency: string, locale: string): string { const n = Number(value); if (Number.isNaN(n)) return value; try { return new Intl.NumberFormat(locale, { style: 'currency', currency, minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n); } catch { return `${value} ${currency}`; } }
+export function sanitizeMoneyInput(raw: string): string { const s = raw.replace(/[^0-9.-]/g,''); const parts = s.split('.'); if (parts.length > 2) return parts[0] + '.' + parts.slice(1).join(''); return s; }

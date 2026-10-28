@@ -1,6 +1,6 @@
 # Development Setup
 
-> **Status:** STABLE · **Owner:** Platform Operations · **Updated:** 2026-10-27
+> **Status:** STABLE · **Owner:** Platform Operations · **Updated:** 2026-10-28
 
 Local development environment runbook for the Universal Business ERP Platform. It takes a
 new engineer or AI agent from a clean clone to a running stack: database, object storage,

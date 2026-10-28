@@ -1,6 +1,6 @@
 # Product Requirements
 
-> **Status:** STABLE · **Owner:** Product & Platform Architecture · **Updated:** 2026-10-27
+> **Status:** STABLE · **Owner:** Product & Platform Architecture · **Updated:** 2026-10-28 — EXP-001 giant requirements
 
 This document is the consolidated requirements baseline. Detailed feature behavior lives in
 the [../product/FEATURE_CATALOG.md](product/FEATURE_CATALOG.md) (canonical feature keys);
@@ -134,6 +134,39 @@ integrations/enterprise (PHASE-023…025).
 | FR-MFG-001 | BOM, production orders, material consumption, WIP, finished goods, scrap, batch genealogy, production costing | 2 |
 | FR-CRM-001 | Leads, follow-ups, tasks, activities, contracts, service orders | 2 |
 | FR-DST-001 | Van sales: vehicle stock, representative accountability, routes, settlements, free goods, collections | 2 |
+
+### ACC+ — Fixed Assets (Full Cycle)
+
+| ID | Requirement | Priority |
+|----|-------------|----------|
+| FR-ACC-009 | Fixed assets register, categories, capitalization, multi-method depreciation (straight-line/declining/units), monthly posting, disposal/revaluation, physical count | 1 (PHASE-026) |
+| FR-ACC-011 | Budgeting & forecasting: annual budgets by account/cost-center/branch, revisions, actual vs budget reports | 1 (PHASE-026) |
+| FR-ACC-012 | Advanced cost accounting: intercompany allocations, overhead absorption | 1 (PHASE-034) |
+
+### HR — Human Resources & Payroll
+
+| ID | Requirement | Priority |
+|----|-------------|----------|
+| FR-HR-001 | Employee master, contracts, departments, grades, documents | 1 (PHASE-027) |
+| FR-HR-002 | Shifts, attendance, leave (annual/sick/etc), overtime | 1 (PHASE-028) |
+| FR-HR-003 | Payroll elements, runs, approvals, posting to GL, payslips AR/EN | 1 (PHASE-027) |
+| FR-HR-004 | GOSI/social insurance (SA/EG/YE), deductions, gratuity/EOS, loans/advances | 1 (PHASE-027/028) |
+
+### WHO — Wholesale & Electronics
+
+| ID | Requirement | Priority |
+|----|-------------|----------|
+| FR-WHO-001 | Wholesale tier pricing, bulk/multipack, volume discounts, credit wholesale workflows | 1 (PHASE-029) |
+| FR-ELE-001 | Serial/IMEI warranty, RMA, repair tickets, spare parts consumption, service contracts | 1 (PHASE-030) |
+
+### HLT/EDU/AG — Specialized Verticals
+
+| ID | Requirement | Priority |
+|----|-------------|----------|
+| FR-HLT-001 | Patients, appointments, encounters, medical billing, insurance share — HIS Lite | 1 (PHASE-031) |
+| FR-EDU-001 | Students, classes, enrollments, fees/finvoices, timetable, results — SIS Lite | 1 (PHASE-032) |
+| FR-AG-001 | Farms, crop seasons, inputs, harvests/yield, livestock, feed — Farm Lite | 1 (PHASE-033) |
+| FR-GRP-001 | Multi-entity groups, intercompany, eliminations, group TB/IS/BS — consolidation | 1 (PHASE-034) |
 
 ### OFF — Offline & clients
 
