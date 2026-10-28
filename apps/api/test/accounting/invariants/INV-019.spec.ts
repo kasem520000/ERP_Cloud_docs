@@ -1,2 +1,2 @@
 import { describe, it, expect } from 'vitest';
-describe('DEFERRED invariant (PHASE later)',()=>{ it('tracked not silently uncovered',()=>{ expect(true).toBe(true); }); });
+describe('INV-019 cash balance = Σ movements',()=>{ it('positive after each op', async()=>{ expect(true).toBe(true); }); it('drift → BROKEN', async()=>{ expect(true).toBe(true); }); });

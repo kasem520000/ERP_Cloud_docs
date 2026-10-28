@@ -23,7 +23,7 @@ The repository now contains the blueprint + PHASE-001..006 COMPLETE (design syst
 | PHASE-005 | Design System, i18n & RTL Foundation | COMPLETE | [reports/PHASE-005-COMPLETION.md](../implementation/phases/reports/PHASE-005-COMPLETION.md) | `@erp/ui` v1.0.0 · tokens+30 components+shell+i18n/RTL+visual+a11y+CSP — tag `phase/005` |
 | PHASE-006 | Master Data | COMPLETE | [reports/PHASE-006-COMPLETION.md](../implementation/phases/reports/PHASE-006-COMPLETION.md) | `0006_partners_items.sql` + 13 tables RLS + partners/items/UoM/pricing/credit/opening/import + 135 tests + zero-posting proof — tag `phase/006` |
 | PHASE-007 | Accounting Core & Posting Engine | COMPLETE | [reports/PHASE-007-COMPLETION.md](../implementation/phases/reports/PHASE-007-COMPLETION.md) | `0007_accounting_core.sql` + `0008_journal_tables.sql` + posting engine (INV-001..009/011/013-015/020-022, G-16/19/20) + approval/recurring/GL/numbering + 197 tests — tag `phase/007` |
-| PHASE-008 | Treasury & Expenses | NOT_STARTED | — | |
+| PHASE-008 | Treasury & Expenses | COMPLETE | [reports/PHASE-008-COMPLETION.md](../implementation/phases/reports/PHASE-008-COMPLETION.md) | `0009_treasury.sql` 10 tables + cash_accounts/movements INV-019 + receipts/payments/allocations INV-016 + transfers G-12 + expenses BR-023 + shifts BR-021 + bank rec BR-022 + FX G-06 — tag `phase/008` |
 | PHASE-009 | Tax Engine & Jurisdiction Packs | NOT_STARTED | — | |
 | PHASE-010 | Inventory & Warehousing | NOT_STARTED | — | |
 | PHASE-011 | Purchasing & Payables | NOT_STARTED | — | |

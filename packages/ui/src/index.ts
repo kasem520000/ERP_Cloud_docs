@@ -49,6 +49,7 @@ export * from './patterns/ItemPicker';
 export * from './patterns/JournalEntryGrid';
 export * from './patterns/MoneySummaryBar';
 export * from './patterns/ApprovalsQueue';
+export * from './patterns/ShiftPanel';
 // print
 export * from './print/templates';
 

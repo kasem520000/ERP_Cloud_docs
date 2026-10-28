@@ -16,3 +16,4 @@ export * from './fiscal-years.js';
 export * from './exchange-rates.js';
 export * from './journal.js';
 export * from './accounting-aux.js';
+export * from './treasury.js';

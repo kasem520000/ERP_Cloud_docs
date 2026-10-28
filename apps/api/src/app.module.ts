@@ -9,9 +9,10 @@ import { IdentityModule } from './modules/identity/identity.module.js';
 import { PartnersModule } from './modules/partners/partners.module.js';
 import { ItemsModule } from './modules/items/items.module.js';
 import { AccountingModule } from './modules/accounting/accounting.module.js';
+import { TreasuryModule } from './modules/treasury/treasury.module.js';
 
 @Module({
-  imports: [HealthModule, AuditModule, FilesModule, JobsModule, TenancyModule, IdentityModule, PartnersModule, ItemsModule, AccountingModule],
+  imports: [HealthModule, AuditModule, FilesModule, JobsModule, TenancyModule, IdentityModule, PartnersModule, ItemsModule, AccountingModule, TreasuryModule],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer): void {

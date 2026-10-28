@@ -209,7 +209,7 @@ Cash, banking, expenses, shifts.
 | `treasury.expense_categories` | Expense categories · تصنيفات المصروفات | Bilingual categories mapped to expense accounts with per-category approval policy | MVP | 008 | `treasury.expense_categories.manage` | `treasury.expenses` |
 | `treasury.cashier_shifts` | Cashier shifts · وردية الصندوق | Opening float, sales capture, closing count, difference posting (BR-021); POS-grade shift UX at PHASE-016 | MVP | 008 | `treasury.shifts.manage` | `treasury.accounts` |
 | `treasury.bank_reconciliation` | Bank reconciliation · التسوية البنكية | Statement import (per-bank format adapters), auto-match + manual match, unmatched aging, per-account period lock | MVP | 008 | `treasury.bank_reconciliation.manage` | `treasury.accounts` |
-| `treasury.cheques` | Cheques · الشيكات | Cheque payment method with status tracking (received/deposited/cleared/bounced) — no bank integration at MVP (A-014) | MVP | 008 | `treasury.cheques.manage` | `treasury.receipts_disbursements` |
+| `treasury.cheques` | Cheques · الشيكات | Cheque payment method with status tracking (received/deposited/cleared/bounced) — no bank integration at MVP (A-014) — **deferred to PHASE-012** per PHASE-008 authoritative deferral (catalog note) | MVP | 012 | `treasury.cheques.manage` | `treasury.receipts_disbursements` |
 
 ## 11. Module: tax
 

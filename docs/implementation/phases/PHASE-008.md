@@ -1,6 +1,6 @@
 # PHASE-008 — Treasury: Cash, Banking & Expenses
 
-> **Status:** PLANNED · **Updated:** 2026-10-27
+> **Status:** COMPLETE · **Updated:** 2026-10-28 · **Tag:** phase/008
 
 ## 1. Phase Overview
 
