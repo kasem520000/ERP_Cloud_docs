@@ -1,6 +1,6 @@
 # Current State
 
-> **Status:** LIVING DOCUMENT — updated at every phase completion · **Updated:** 2026-10-27
+> **Status:** LIVING DOCUMENT — updated at every phase completion · **Updated:** 2026-10-28
 
 What actually exists in this repository right now. Paired with
 [../planning/IMPLEMENTATION_STATUS.md](../planning/IMPLEMENTATION_STATUS.md) (phase
@@ -8,57 +8,40 @@ table) and [NEXT_ACTION.md](NEXT_ACTION.md).
 
 ## Repository contents
 
-- **Documentation blueprint v1.0 — COMPLETE** (the deliverable of the initial
-  documentation task): 202 Markdown documents under `docs/` covering vision, product
-  requirements, scope, glossary (EN↔AR), architecture (system overview, 16 ADRs,
-  module boundaries, dependency rules, data flows, security, multi-tenancy, deployment,
-  observability), planning (25-phase roadmap, dependency graph, acceptance criteria,
-  status, release strategy, risk register), database (conventions, entity catalog, data
-  dictionary, relationships, constraints/indexes, tenant isolation, migration strategy,
-  backup/recovery, ERDs, table specs, seeds), product (personas, journeys, workflows,
-  BR-001…040 business rules, industry/feature catalogs, subscriptions & entitlements,
-  configuration engine), accounting (principles, bilingual CoA, posting engine,
-  document lifecycle, journal rules, AR/AP, inventory accounting, period closing,
-  reconciliation, invariants INV-001…022), industries (framework + capability matrix +
-  8 template manifests + workflows + report catalog), localization (architecture,
-  RTL/LTR, currency/precision, country packs for SA/AE/BH/KW/OM/QA/YE/EG/JO/IQ with
-  compliance matrices + official-sources registry, tax engine, e-invoicing
-  architecture), api (conventions, authentication, error model, idempotency,
-  versioning, OpenAPI strategy, integrations catalog), ui (principles, tokens, design
-  system, 49-component catalog, 12 page archetypes, navigation, RTL rules,
-  accessibility, motion, visual testing), reporting (architecture, report contract,
-  catalog with 40+ reports, financial statement rules, printing/export,
-  reconciliation), offline (architecture, local DB, sync protocol, conflict
-  resolution, idempotency, device security, capabilities matrix, failure recovery),
-  security (threat model, authorization matrix, data protection, secrets, security
-  test plan, incident response), testing (strategy, accounting tests with golden
-  datasets, tenant isolation tests, sync chaos suite, regression, performance),
-  operations (dev setup, environments, CI/CD, deployment, backup/restore runbook,
-  disaster recovery, monitoring, troubleshooting), implementation (25 phase documents
-  + phase/completion/code-review templates), decisions (records for pricing, payment
-  provider, costing default, ZATCA scope, Yemen scope, observability vendors), and
-  this handoff set.
-- **Application code: NONE.** No `apps/`, no `packages/`, no migrations, no tests, no
-  CI workflow files. The repository is documentation-only until PHASE-001.
-- **Git:** initialized, `main` branch, blueprint committed and tagged `blueprint/v1.0`.
+- **Documentation blueprint v1.1 — COMPLETE** (202 Markdown documents under `docs/` covering vision, product requirements, scope, glossary, architecture, planning, database, product, accounting, industries, localization, api, ui, reporting, offline, security, testing, operations, implementation, decisions, and handoff). Audited via [../CONSOLIDATION_VALIDATION_REPORT.md](../CONSOLIDATION_VALIDATION_REPORT.md) (23/23 checks green).
+
+- **Application code: PHASE-001 FOUNDATION COMPLETE** — monorepo skeleton with strict TypeScript, lint/boundary enforcement, Docker Compose dev environment, CI pipeline, and domain primitives:
+  - **Monorepo:** `pnpm-workspace.yaml`, `turbo.json`, `.nvmrc`, `.editorconfig`, `.prettierrc`, `pnpm-workspace.yaml`, `eslint.config.mjs`, `.dependency-cruiser.cjs`, `.env.example`, `docker-compose.yml`, `.github/workflows/ci.yml`, `AGENTS.md`, `README.md`
+  - **Apps:** `apps/api` (NestJS + `/health/live`), `apps/web` (Next.js 15 + `[locale]` RTL/LTR demo), `apps/desktop` + `apps/mobile` (README stubs for PHASE-021/022)
+  - **Packages:** `packages/domain-core` (UUIDv7, Money/Quantity/Rate via decimal.js, Result, errors, CalendarDate + 57 tests), `packages/contracts` (zod registry v0 + error-code enum), `packages/ui` (stub, PHASE-005), `packages/config` (tsconfig bases, eslint base, prettier config)
+  - **Scripts:** `scripts/validate-docs.py` + `scripts/validate_docs.py` (docs validation, 0 broken links), `scripts/check-boundaries.sh` + fixtures proving boundary enforcement, `scripts/extract_manifests.py` stub
+  - **Evidence:** `docs/implementation/phases/reports/PHASE-001-COMPLETION.md` with CI-equivalent local runs (typecheck/lint/test/build/docs/boundary all green), commit `arena/980b5f7a-erp-cloud-docs`
+
+- **Git:** `main` (blueprint `blueprint/v1.0` + `blueprint/v1.1`) + `arena/980b5f7a-erp-cloud-docs` (PHASE-001 implementation). Tag `phase/001` to be created on merge.
 
 ## Status of the world (honest statement per directive §24)
 
-- **Designed:** everything in `docs/` — this is the blueprint, not a claim of working
-  software.
-- **Implemented:** nothing.
-- **Tested:** nothing.
-- **Verified against official sources:** no compliance item is VERIFIED; all country
-  tax data is BASELINE_RESEARCH with REQUIRES_VERIFICATION flags
-  ([../localization/compliance-matrix/README.md](../localization/compliance-matrix/README.md)).
-- **Production-ready / compliant / secure:** no such claims are made anywhere, and
-  none may be made until phases complete with evidence.
+- **Designed:** everything in `docs/` — blueprint is authoritative, validated (23/23 checks).
+- **Implemented:** PHASE-001 only — no business logic, no DB schema, no auth, no accounting engine. Health endpoint is the only API route.
+- **Tested:** PHASE-001 unit/property tests (57 domain-core + 5 contracts + 1 api health) + docs validation + boundary meta-test + build/typecheck/lint all green locally (CI config mirrors this).
+- **Verified against official sources:** no compliance item is VERIFIED; all country tax data is BASELINE_RESEARCH with REQUIRES_VERIFICATION flags ([../localization/compliance-matrix/README.md](../localization/compliance-matrix/README.md)).
+- **Production-ready / compliant / secure:** no such claims are made. Gitleaks scanning is wired; no secrets in repo (`.env.example` only).
+
+## Verification (2026-10-28 local run)
+
+```
+pnpm typecheck  → 8 tasks successful
+pnpm test       → 63 tests passed (57 domain-core + 5 contracts + 1 api), 0 failed
+pnpm lint       → eslint . --max-warnings 0 green (boundaries + import + dependency-cruiser)
+pnpm build      → 5 tasks successful (api + web + 3 packages)
+python3 scripts/validate-docs.py → PASSED (0 broken links, 25/25 phase headings, 17 ADRs, 8 manifests)
+bash scripts/check-boundaries.sh → PASSED (depcruise detected violation)
+docker compose config → valid (postgres:16, minio, mailpit, api/web profiles)
+```
 
 ## Known open items
 
-- Open questions OQ-001…OQ-010 in
-  [../ASSUMPTIONS_AND_OPEN_QUESTIONS.md](../ASSUMPTIONS_AND_OPEN_QUESTIONS.md) —
-  notable: pricing matrix (OQ-002), payment provider (OQ-003), ZATCA scope (OQ-004).
-- Decision records OPEN under [../decisions/](../decisions/README.md).
-- Risks under watch: [../planning/RISK_REGISTER.md](../planning/RISK_REGISTER.md)
-  top-5 watchlist.
+- Open questions OQ-001…OQ-010 in [../ASSUMPTIONS_AND_OPEN_QUESTIONS.md](../ASSUMPTIONS_AND_OPEN_QUESTIONS.md)
+- Decision records OPEN under [../decisions/](../decisions/README.md)
+- Risks under watch: [../planning/RISK_REGISTER.md](../planning/RISK_REGISTER.md) top-5
+- Next phase: PHASE-002 (DB & migrations) — prerequisites satisfied (PHASE-001 COMPLETE with evidence).

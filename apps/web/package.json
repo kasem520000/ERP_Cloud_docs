@@ -1,0 +1,29 @@
+{
+  "name": "@erp/web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ERP Web — Next.js skeleton with RTL/LTR demo (PHASE-001)",
+  "type": "commonjs",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev -p ${WEB_PORT:-3000}",
+    "start": "next start -p ${WEB_PORT:-3000}",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --max-warnings 0",
+    "test": "echo \"no web unit tests in PHASE-001 — build smoke is the gate\" && exit 0"
+  },
+  "dependencies": {
+    "@erp/contracts": "workspace:*",
+    "@erp/domain-core": "workspace:*",
+    "@erp/ui": "workspace:*",
+    "next": "^15.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "typescript": "^5.6.3"
+  }
+}

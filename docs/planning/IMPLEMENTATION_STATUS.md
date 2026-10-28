@@ -1,6 +1,6 @@
 # Implementation Status
 
-> **Status:** LIVING DOCUMENT — updated at every phase completion · **Updated:** 2026-10-27
+> **Status:** LIVING DOCUMENT — updated at every phase completion · **Updated:** 2026-10-28
 
 Single source of truth for what is **actually implemented** (vs. documented vs. planned).
 Agents MUST keep this in sync with reality; the roadmap describes intent, this file
@@ -10,16 +10,14 @@ describes fact. Evidence = completion reports in
 **Legend:** `NOT_STARTED` · `IN_PROGRESS` · `COMPLETE` (all exit criteria met with
 evidence) · `BLOCKED` (with reason) · `WAIVED` (with decision record).
 
-## Current state: BLUEPRINT v1.0 — NO CODE IMPLEMENTED
+## Current state: BLUEPRINT v1.1 + PHASE-001 COMPLETE
 
-The repository contains the documentation blueprint only. All phases are `NOT_STARTED`.
-Nothing in this repository may be described as implemented, tested, secure, or compliant
-until recorded here with evidence.
+The repository now contains the documentation blueprint + the PHASE-001 engineering foundation (monorepo, CI, compose, domain primitives). See [../handoff/CURRENT_STATE.md](../handoff/CURRENT_STATE.md) for details.
 
 | Phase | Title | Status | Completion report | Notes |
 |-------|-------|--------|-------------------|-------|
-| PHASE-001 | Repository & Engineering Foundation | NOT_STARTED | — | Next eligible phase |
-| PHASE-002 | Database & Migration Infrastructure | NOT_STARTED | — | |
+| PHASE-001 | Repository & Engineering Foundation | COMPLETE | [reports/PHASE-001-COMPLETION.md](../implementation/phases/reports/PHASE-001-COMPLETION.md) | Tag `phase/001` on merge · all gates green |
+| PHASE-002 | Database & Migration Infrastructure | NOT_STARTED | — | Next eligible phase |
 | PHASE-003 | Identity, Multi-Tenancy & Audit | NOT_STARTED | — | |
 | PHASE-004 | Tenant Provisioning & Platform Admin | NOT_STARTED | — | |
 | PHASE-005 | Design System, i18n & RTL | NOT_STARTED | — | |
@@ -48,13 +46,17 @@ until recorded here with evidence.
 
 | Area | Status | Evidence |
 |------|--------|----------|
-| Database schema | NONE — no migrations exist | `migrations/` absent |
-| API | NONE — no endpoints exist | — |
-| UI | NONE — no app code exists | — |
-| Tests | NONE | — |
-| Security controls | NONE — documentation only | — |
-| Compliance | NONE — no jurisdiction pack data verified against official sources | — |
-| Deployment | NONE | — |
+| Database schema | NONE — no migrations (PHASE-002) | `apps/api/migrations/` absent (compose boots empty PG16) |
+| API | SKELETON — `GET /health/live` only | `apps/api/src/health/` + test |
+| UI | SKELETON — Next.js `[locale]` RTL/LTR demo | `apps/web/src/app/[locale]/` + build |
+| Packages | `domain-core` v0 (57 tests), `contracts` v0 (5 tests), `ui` stub, `config` | `packages/*/dist` built |
+| Tests | 63 tests passed (unit + property), 0 failed | `pnpm test` (turbo) |
+| Lint/Boundaries | ESLint + boundaries + import + depcruise green; negative meta-test green | `pnpm lint` + `scripts/check-boundaries.sh` |
+| Docs validation | PASSED (0 broken links, 25/25 headings, 8 manifests) | `python3 scripts/validate-docs.py` |
+| CI | Configured (8 jobs: install/typecheck/lint/unit/build/docs/gitleaks/negative) | `.github/workflows/ci.yml` |
+| Security controls | Gitleaks wired, no secrets, CODEOWNERS stub | `.github/CODEOWNERS`, `.env.example` |
+| Compliance | NONE — no jurisdiction pack data verified | — |
+| Deployment | Compose dev stack (postgres/minio/mailpit) + Dockerfiles | `docker-compose.yml`, `apps/*/Dockerfile` |
 
 ## Update protocol (normative)
 

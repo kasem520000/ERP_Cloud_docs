@@ -1,0 +1,36 @@
+{
+  "name": "@erp/api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ERP API — NestJS modular monolith skeleton (PHASE-001)",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "node --watch dist/main.js",
+    "start": "node dist/main.js",
+    "dev:worker": "WORKER_MODE=1 node dist/main.js",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --max-warnings 0",
+    "test": "vitest run",
+    "test:integration": "echo \"no integration tests in PHASE-001 (PHASE-002 adds Testcontainers)\"",
+    "db:migrate": "echo \"no migrations until PHASE-002\"",
+    "db:seed": "echo \"no seeds until PHASE-002\"",
+    "db:generate": "echo \"drizzle-kit not yet configured (PHASE-002)\"",
+    "db:studio": "echo \"drizzle studio not yet (PHASE-002)\""
+  },
+  "dependencies": {
+    "@erp/contracts": "workspace:*",
+    "@erp/domain-core": "workspace:*",
+    "@nestjs/common": "^10.4.0",
+    "@nestjs/core": "^10.4.0",
+    "@nestjs/platform-express": "^10.4.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^10.4.0",
+    "@types/node": "^22.7.4",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.0"
+  }
+}

@@ -4,27 +4,7 @@
 
 Format: `DATE — item — type` where type ∈ {BLUEPRINT, PHASE-NNN, DOCS, BREAKING-ARCH, DECISION}.
 
-- 2026-10-28 — **Blueprint v1.1 — Consolidation**: Folder 3 adopted as the canonical
-  baseline; audited ideas from competing plans integrated and all dispositions recorded.
-  10 defect corrections (DEF-001…DEF-010, two HIGH: money wire-regex conflict; ledger
-  balance trigger made DEFERRABLE), 12 consolidation decisions (CD-01…CD-12), new
-  ADR-0017 (no event sourcing), 14 authoritative summary documents
-  (ARCHITECTURE_BASELINE + domain summaries + registers + validation report), 8
-  industry manifests extracted to machine-readable JSON
-  (`industries/templates/manifests/`), 2 validation scripts (`scripts/`), 23/23
-  deterministic doc checks green. See [../CONSOLIDATION_VALIDATION_REPORT.md](../CONSOLIDATION_VALIDATION_REPORT.md)
-  and [../CONSOLIDATION_REGISTER.md](../CONSOLIDATION_REGISTER.md). — BLUEPRINT
-- 2026-10-27 — **Blueprint v1.0**: complete documentation blueprint created — 202
-  documents, 16 ADRs, 25 phase documents, 8-stage roadmap, 22 accounting invariants
-  (INV-001…022), 40 business rules (BR-001…040), 10-country compliance matrices with
-  verification flags, cross-document validation performed
-  ([VALIDATION_REPORT.md](VALIDATION_REPORT.md)). Repository tagged `blueprint/v1.0`.
-  No application code exists yet. — BLUEPRINT
-- 2026-10-27 — Post-blueprint consistency fixes: phase-numbering drift corrected
-  (ADR-0012 POS subset → PHASE-016; DEPLOYMENT client distribution → 021/022;
-  OQ-004 ZATCA implementation → PHASE-023; OBSERVABILITY sync-health → PHASE-020;
-  MODULE_BOUNDARIES configuration module → P-004/015 and sync tables aligned with
-  ENTITY_CATALOG); PHASE_ACCEPTANCE_CRITERIA.md restored; permission-key
-  reconciliation note added to FEATURE_CATALOG (AUTHORIZATION_MATRIX canonical);
-  TABLES/tax-compliance.md added (referenced by E_INVOICING_ARCHITECTURE); phase
-  template/README wording clarified (29 mandatory items mapped to 8 sections). — DOCS
+- 2026-10-28 — **PHASE-001 COMPLETE — Repository & Engineering Foundation**: monorepo scaffold (pnpm 9.15.9 + Turborepo + strict TS `noUncheckedIndexedAccess`), tooling (ESLint + boundaries + import + dependency-cruiser, Prettier, EditorConfig), `packages/domain-core` v0 (UUIDv7, Money/Quantity/Rate via decimal.js, Result, DomainError, CalendarDate — 57 tests incl. property), `packages/contracts` v0 (zod registry + error-code enum — 5 tests), `packages/ui` stub, `packages/config` shared configs, `apps/api` NestJS skeleton (`GET /health/live` — 1 test), `apps/web` Next.js 15 skeleton (`[locale]` RTL/LTR demo, `dir="rtl"`/`"ltr"` verified), `apps/desktop`/`mobile` stubs, Docker Compose (postgres:16, minio, mailpit, api/web full profile), `.env.example`, GitHub Actions CI (8 jobs: install/typecheck/lint/unit/build/docs/gitleaks/negative), docs validation (`scripts/validate-docs.py` — 0 broken links, 25/25 headings, 17 ADRs, 8 manifests), boundary negative meta-test (depcruise detects violation). All gates green: `pnpm typecheck` 8 tasks, `pnpm test` 63 tests, `pnpm lint` + `eslint .` green, `pnpm build` 5 tasks, `docker compose config` valid. Report: [PHASE-001-COMPLETION.md](../implementation/phases/reports/PHASE-001-COMPLETION.md) — PHASE-001. — PHASE-001
+- 2026-10-28 — **Blueprint v1.1 — Consolidation**: Folder 3 adopted as the canonical baseline; audited ideas from competing plans integrated and all dispositions recorded. 10 defect corrections (DEF-001…DEF-010, two HIGH: money wire-regex conflict; ledger balance trigger made DEFERRABLE), 12 consolidation decisions (CD-01…CD-12), new ADR-0017 (no event sourcing), 14 authoritative summary documents (ARCHITECTURE_BASELINE + domain summaries + registers + validation report), 8 industry manifests extracted to machine-readable JSON (`industries/templates/manifests/`), 2 validation scripts (`scripts/`), 23/23 deterministic doc checks green. See [../CONSOLIDATION_VALIDATION_REPORT.md](../CONSOLIDATION_VALIDATION_REPORT.md) and [../CONSOLIDATION_REGISTER.md](../CONSOLIDATION_REGISTER.md). — BLUEPRINT
+- 2026-10-27 — **Blueprint v1.0**: complete documentation blueprint created — 202 documents, 16 ADRs, 25 phase documents, 8-stage roadmap, 22 accounting invariants (INV-001…022), 40 business rules (BR-001…040), 10-country compliance matrices with verification flags, cross-document validation performed ([VALIDATION_REPORT.md](VALIDATION_REPORT.md)). Repository tagged `blueprint/v1.0`. No application code exists yet. — BLUEPRINT
+- 2026-10-27 — Post-blueprint consistency fixes: phase-numbering drift corrected (ADR-0012 POS subset → PHASE-016; DEPLOYMENT client distribution → 021/022; OQ-004 ZATCA implementation → PHASE-023; OBSERVABILITY sync-health → PHASE-020; MODULE_BOUNDARIES configuration module → P-004/015 and sync tables aligned with ENTITY_CATALOG); PHASE_ACCEPTANCE_CRITERIA.md restored; permission-key reconciliation note added to FEATURE_CATALOG (AUTHORIZATION_MATRIX canonical); TABLES/tax-compliance.md added (referenced by E_INVOICING_ARCHITECTURE); phase template/README wording clarified (29 mandatory items mapped to 8 sections). — DOCS

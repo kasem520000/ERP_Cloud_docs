@@ -1,0 +1,10 @@
+{
+  "name": "@erp/config",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared TypeScript, ESLint and Prettier configuration for the ERP monorepo",
+  "type": "commonjs",
+  "main": "index.js",
+  "files": ["*.json", "*.cjs", "*.mjs"],
+  "license": "UNLICENSED"
+}
