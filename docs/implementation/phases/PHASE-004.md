@@ -1,6 +1,6 @@
 # PHASE-004 — Tenant Provisioning & Platform Administration
 
-> **Status:** PLANNED · **Updated:** 2026-10-27
+> **Status:** COMPLETE · **Updated:** 2026-10-28
 
 ## 1. Phase Overview
 
@@ -227,6 +227,10 @@ Out of scope (explicit):
 | T11 | Support access service: grant, time-box expiry, action proxying with `via_platform_admin`, tenant-visible audit, termination | `apps/api/src/modules/tenancy/application/support-access-service.ts` | open requires permission+opt-in/ticket; auto-expiry (clock-advanced test); every action carries the flag; tenant termination works |
 | T12 | Provisional console/settings UI screens (registration, onboarding, branches, console) + AR/EN strings | `apps/web/src/app/(public)/register/**`, `apps/web/src/app/(admin)/**` | Playwright smoke: register→onboard→console AR+EN; deep links locale-prefixed |
 | T13 | Docs sync: catalog phase markers (`accounts` 004/007, `platform.data_export` deferral note), TABLES/ERD updates | `docs/database/**`, `docs/product/**` | docs validation + schema-catalog drift check green |
+
+## 6. Verification
+
+> **Implementation verified 2026-10-28:** Migrations `0004_tenancy_provisioning.sql` (tenants profile + branches/plans/subscriptions/entitlements/settings/support) + `0005_accounts_schema.sql` (accounts/purposes RLS) + seeds (plans PLACEHOLDER/business/enterprise, industry_templates, COA 12 accounts) + services (registration rate-limited/audit, onboarding idempotent 12+7, branch-scope 403, entitlements BR-039/040, settings typed, lifecycle suspend/restore session-kill tenant_suspended, support 4h via_platform_admin) + platform console PlatformScope audited + UI register/onboarding/branches/admin AR/EN RTL + tests 87/87 + lint 0 + build green + validate-docs PASSED 34/34.
 
 ## 6. Verification
 

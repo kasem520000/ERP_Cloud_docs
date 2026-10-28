@@ -18,8 +18,8 @@ The repository now contains the documentation blueprint + PHASE-001 foundation +
 |-------|-------|--------|-------------------|-------|
 | PHASE-001 | Repository & Engineering Foundation | COMPLETE | [reports/PHASE-001-COMPLETION.md](../implementation/phases/reports/PHASE-001-COMPLETION.md) | Tag `phase/001` on merge · all gates green |
 | PHASE-002 | Database & Migration Infrastructure | COMPLETE | [reports/PHASE-002-COMPLETION.md](../implementation/phases/reports/PHASE-002-COMPLETION.md) | Drizzle + migrations 0001/0002 + RLS + audit + pg-boss + files + ready |
-| PHASE-003 | COMPLETE | 2026-10-28 | `0003_identity_core.sql` + identity module (users/roles/permissions/memberships/sessions/devices/mfa_factors/invitations) + seeds + auth/session/MFA/rate-limit + RBAC + tenant-context + email(mailpit) + UI login/users AR/EN RTL + 70 tests | Identity, Multi-Tenancy & Audit | NOT_STARTED | — | |
-| PHASE-004 | Tenant Provisioning & Platform Admin | NOT_STARTED | — | |
+| PHASE-003 | Identity, Multi-Tenancy & Audit Core | COMPLETE | [reports/PHASE-003-COMPLETION.md](../implementation/phases/reports/PHASE-003-COMPLETION.md) | `0003_identity_core.sql` + identity (8 tables, RLS, sessions/MFA/RBAC/tenant-context) + seeds/permissions drift + mailpit + UI AR/EN RTL + 70 tests |
+| PHASE-004 | Tenant Provisioning & Platform Admin | COMPLETE | [reports/PHASE-004-COMPLETION.md](../implementation/phases/reports/PHASE-004-COMPLETION.md) | `0004_tenancy_provisioning.sql` + `0005_accounts_schema.sql` + tenancy module (registration/onboarding/branches/entitlements/settings/lifecycle/support) + PlatformScope console + 87 tests |
 | PHASE-005 | Design System, i18n & RTL | NOT_STARTED | — | |
 | PHASE-006 | Master Data | NOT_STARTED | — | |
 | PHASE-007 | Accounting Core & Posting Engine | NOT_STARTED | — | |
