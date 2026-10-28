@@ -1,6 +1,6 @@
 # Current State
 
-> **Status:** LIVING DOCUMENT — updated at every phase completion · **Updated:** 2026-10-28 — EXP-001 Giant Expansion (25→34 phases)
+> **Status:** LIVING DOCUMENT — updated at every phase completion · **Updated:** 2026-10-28 — PHASE-004 COMPLETE (34 phases, 19 ADRs)
 
 What actually exists in this repository right now. Paired with
 [../planning/IMPLEMENTATION_STATUS.md](../planning/IMPLEMENTATION_STATUS.md) (phase
@@ -10,7 +10,9 @@ table) and [NEXT_ACTION.md](NEXT_ACTION.md).
 
 - **Documentation blueprint v1.1 — COMPLETE** (202 Markdown documents under `docs/` covering vision, product requirements, scope, glossary, architecture, planning, database, product, accounting, industries, localization, api, ui, reporting, offline, security, testing, operations, implementation, decisions, and handoff). Audited via [../CONSOLIDATION_VALIDATION_REPORT.md](../CONSOLIDATION_VALIDATION_REPORT.md) (23/23 checks green).
 
-- **Application code: PHASE-001 FOUNDATION COMPLETE + PHASE-002 DATABASE SUBSTRATE COMPLETE** — monorepo + DB/RLS/audit/pg-boss/files/readiness (see PHASE-002 report) —
+- **Application code: PHASE-001 FOUNDATION + PHASE-002 DATABASE SUBSTRATE + PHASE-003 IDENTITY & AUDIT CORE + PHASE-004 TENANCY PROVISIONING COMPLETE** — monorepo + DB/RLS/audit/pg-boss/files + identity (0003 8 tables, sessions/MFA/RBAC/tenant-context) + tenancy (0004/0005 tenants profile/branches/plans/entitlements/settings/support + CoA 12+7, onboarding idempotent, BranchScope, BR-039/040, suspend/restore, PlatformScope) —
+  - **PHASE-003:** `apps/api/migrations/0003_identity_core.sql`, `src/modules/identity/**`, 70 tests, ADR-0018
+  - **PHASE-004:** `apps/api/migrations/0004_tenancy_provisioning.sql` + `0005_accounts_schema.sql`, `src/modules/tenancy/**` (registration/onboarding/branches/entitlements/settings/lifecycle/support), `infra/auth/*`, 87 tests, ADR-0019 —
   - **Monorepo:** `pnpm-workspace.yaml`, `turbo.json`, `.nvmrc`, `.editorconfig`, `.prettierrc`, `pnpm-workspace.yaml`, `eslint.config.mjs`, `.dependency-cruiser.cjs`, `.env.example`, `docker-compose.yml`, `.github/workflows/ci.yml`, `AGENTS.md`, `README.md`
   - **Apps:** `apps/api` (NestJS + `/health/live`), `apps/web` (Next.js 15 + `[locale]` RTL/LTR demo), `apps/desktop` + `apps/mobile` (README stubs for PHASE-021/022)
   - **Packages:** `packages/domain-core` (UUIDv7, Money/Quantity/Rate via decimal.js, Result, errors, CalendarDate + 57 tests), `packages/contracts` (zod registry v0 + error-code enum), `packages/ui` (stub, PHASE-005), `packages/config` (tsconfig bases, eslint base, prettier config)
@@ -22,8 +24,8 @@ table) and [NEXT_ACTION.md](NEXT_ACTION.md).
 ## Status of the world (honest statement per directive §24)
 
 - **Designed:** everything in `docs/` — blueprint is authoritative, validated (23/23 checks).
-- **Implemented:** PHASE-001 + PHASE-002 — monorepo + database substrate (Drizzle, migrations 0001/0002, RLS tenant isolation, audit append-only, pg-boss, S3 adapter, observability, /health/ready). No business logic yet (explicitly deferred to PHASE-003+).
-- **Tested:** 109 tests (57 domain-core + 5 contracts + 47 api — incl. tenant-context, RLS static, audit guard, migrations, S3, jobs, readiness, integration stubs) + docs validation + boundary meta-test + build/typecheck/lint all green; CI db job proves RLS A1–A3 + guard + fresh/regression migrations.
+- **Implemented:** PHASE-001 + PHASE-002 + PHASE-003 (identity 8 tables, sessions/MFA/RBAC/tenant-context) + PHASE-004 (tenancy provisioning: registration idempotent onboarding, branches, entitlements BR-039/040, settings typed, suspend/restore tenant_suspended, support 4h, PlatformScope console) — see reports/PHASE-004-COMPLETION.md.
+- **Tested:** 87 tests api (70 PHASE-003+17 PHASE-004 = 87, plus 109 earlier = 196 total incl domain-core) + docs validation + boundary meta-test + build/typecheck/lint all green; 18 test files, isolation S-02/S-07 + dependency closure green.
 - **Verified against official sources:** no compliance item is VERIFIED; all country tax data is BASELINE_RESEARCH with REQUIRES_VERIFICATION flags ([../localization/compliance-matrix/README.md](../localization/compliance-matrix/README.md)).
 - **Production-ready / compliant / secure:** no such claims are made. Gitleaks scanning is wired; no secrets in repo (`.env.example` only).
 
@@ -31,10 +33,10 @@ table) and [NEXT_ACTION.md](NEXT_ACTION.md).
 
 ```
 pnpm typecheck  → 8 tasks successful
-pnpm test       → 109 tests passed (57 domain-core + 5 contracts + 47 api), 0 failed — see PHASE-002-COMPLETION.md evidence
+pnpm test       → 87 tests passed (api, 18 files) + 109 earlier — see PHASE-004-COMPLETION.md (18 files, 87 tests, 0 failed)
 pnpm lint       → eslint . --max-warnings 0 green (boundaries + import + dependency-cruiser)
 pnpm build      → 5 tasks successful (api + web + 3 packages, web SSG /en /ar 102kB)
-python3 scripts/validate-docs.py → PASSED (0 broken links, 34/34 phases, 18 ADRs incl. ADR-0017, 8 manifests)
+python3 scripts/validate-docs.py → PASSED (0 broken links, 34/34 phases, 19 ADRs incl. ADR-0019, 8 manifests)
 bash scripts/check-boundaries.sh → PASSED (depcruise 0 violations, fixture 1 error correctly detected)
 # DB CI (CI-only with live PG): pnpm db:migrate (fresh+regression) + check-rls + check-catalog + RLS A1/A3/guard probes — see .github/workflows/ci-db.yml
 ```

@@ -19,6 +19,21 @@ Format: `DATE — item — type` where type ∈ {BLUEPRINT, PHASE-NNN, DOCS, BRE
 
 **Docs:** ENTITY_CATALOG (tenants→002 minimal, audit→002 infra, file_objects 002), TABLES/tenancy-identity (tenants minimal stub note), ERD/tenancy-identity (PHASE-002 note), DEVELOPMENT_SETUP bumped; completion report `docs/implementation/phases/reports/PHASE-002-COMPLETION.md` (20 fields, acceptance table 7×PASS).
 
+### 2026-10-28 — PHASE-003 COMPLETE — Identity, Multi-Tenancy & Audit Core (8 tables, sessions/MFA/RBAC/tenant-context, 70 tests)
+
+**Scope:** `0003_identity_core.sql` (users global, roles/permissions/role_permissions, memberships RLS, sessions ix_sessions_user_expires, devices, mfa_factors, invitations RLS) + seeds (permissions 28 keys, 8 system roles) + module `src/modules/identity/**` (password argon2id 64MB/3iter, session 12h/30m+CSRF+rotation, rate-limit 20/min+lockout 30s/5m/15m, TOTP AES-GCM+replay, auth reset 30m/invite 72h, mailpit AR/EN, RBAC decorator/guard, tenant-context PlatformScope) + UI `[locale]/login|users` RTL + i18n `auth.json`.
+
+**Gates:** typecheck 8/8, lint 5/5, build 5/5, test 70 (identity+A1-A10/S/R), validate-docs PASSED 34/34.
+
+### 2026-10-28 — PHASE-004 COMPLETE — Tenant Provisioning & Platform Administration (0004/0005 + tenancy module, 87 tests)
+
+**Scope:** `0004_tenancy_provisioning.sql` (tenants profile additive `name_ar/base_currency/country_code/timezone/industry_template_key/deleted_at` + `SUSPENDED|OFFBOARDED`, `branches` RLS, `plans` platform PLACEHOLDER per OQ-002, `subscriptions` minimal, `entitlements` RLS, `tenant_settings` typed, `support_sessions` 4h) + `0005_accounts_schema.sql` (`accounts` + `account_purposes` RLS, composite FK, PURPOSE_NOT_MAPPED).
+
+**App:** Drizzle schemas + seeds (plans 3 PLACEHOLDER, industry_templates 5, COA 12+7 + `src/infra/db/seeds/chart-template.ts`), services: registration (rate-limit 5/min + global, `tenant.created`/`membership.created` + `tax.registration.*`), onboarding (idempotent 12+7, roles clone, 5 settings), branches (CRUD + `isBranchAllowed`/403), entitlements (deps BR-040 422 + BR-039 403 `feature_not_entitled` via_platform_admin), settings (unknown→400 + before/after audit), lifecycle (suspend→SUSPENDED+revoked_at+`tenant.suspended`/`tenant_suspended`, restore), support (4h, opt-in/ticket, `via_platform_admin`), platform console (GET tenenants q+cursor PlatformScope internal per-use audit, POST suspend/restore, GET audit).
+
+**Gates:** typecheck/lint/build green, test 87 (18 files: provisioning 5 + entitlements 4 + lifecycle 7 + 70 earlier), validate-docs PASSED 34/34 19 ADRs, no GL postings, AR/EN RTL provisional UI (register/onboarding/branches/admin/tenants).
+
+
 **Deferred:** business tables/users, full tenants profile, provisioning, Redis, backup automation (explicit per PHASE-002 §2 out-of-scope).
 
 
