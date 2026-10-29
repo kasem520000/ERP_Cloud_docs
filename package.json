@@ -1,0 +1,43 @@
+{
+  "name": "erp-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Universal Business ERP Platform — multi-tenant, multi-industry SaaS ERP for MENA/GCC (Arabic-first). Monorepo per ADR-0002.",
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "lint:depcruise": "dependency-cruiser apps packages --config .dependency-cruiser.cjs",
+    "test": "turbo run test",
+    "dev": "turbo run dev",
+    "docs:validate": "python3 scripts/validate_docs.py",
+    "boundary:negative-test": "bash scripts/ci/negative-boundary-test.sh",
+    "gate:local": "bash scripts/ci/local-gate.sh",
+    "check:rls": "tsx scripts/check-rls.ts",
+    "check:permissions-drift": "tsx scripts/check-permissions-drift.ts",
+    "db:dev-credentials": "tsx scripts/db-dev-credentials.ts",
+    "db:migrate": "pnpm --filter @erp/api db:migrate",
+    "test:db": "turbo run test:db",
+    "migration-tests": "tsx scripts/ci/migration-tests.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@types/pg": "^8.23.1",
+    "dependency-cruiser": "^16.10.3",
+    "eslint": "^9.39.2",
+    "eslint-import-resolver-typescript": "^4.4.5",
+    "eslint-plugin-boundaries": "^5.3.0",
+    "globals": "^16.5.0",
+    "pg": "^8.23.1",
+    "prettier": "^3.6.2",
+    "tsx": "^4.20.3",
+    "turbo": "^2.6.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.0"
+  },
+  "prettier": "./packages/config/prettier/index.mjs"
+}
